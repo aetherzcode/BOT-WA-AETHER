@@ -11,3 +11,5 @@ let handler = async (m, { conn }) => {
 handler.command = /^susn/i
 handler.limit = true
 module.exports = handler
+
+//gh: dana_putra13
