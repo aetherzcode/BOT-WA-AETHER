@@ -11,5 +11,3 @@ let handler = async (m, { conn }) => {
 handler.command = /^toka/i
 handler.limit = true
 module.exports = handler
-
-//gh: dana_putra13
