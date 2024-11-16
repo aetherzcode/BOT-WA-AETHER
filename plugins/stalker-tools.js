@@ -83,7 +83,7 @@ let handler = async (m, {
     }
  }
  if (command == 'repostalk') {
-    if (!text) throw `Example : ${usedPrefix + command} AETHERBOTZZ`;
+    if (!text) throw `Example : ${usedPrefix + command} BETABOTZ-MD2`;
     try {
       let repo = await fetch(`https://api.betabotz.eu.org/api/stalk/repo?repo=${text}&apikey=${lann}`).then(res => res.json());
       let caption = `*R E P O S T A L K*\n\n`;
