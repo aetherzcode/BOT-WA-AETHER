@@ -1,4 +1,3 @@
-
 let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isROwner }) => {
   let isEnable = /true|enable|(turn)?on|1/i.test(command)
   let chat = global.db.data.chats[m.chat]
@@ -7,6 +6,15 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
   let isAll = false
   let isUser = false
   switch (type) {
+    case 'notifgempa':
+      if (m.isGroup) {
+          if (!(isAdmin || isOwner)) {
+              global.dfail('admin', m, conn)
+              return false
+          }
+          chat.notifgempa = isEnable
+      } else return global.dfail('group', m, conn)
+      break
     case 'welcome':
       if (!m.isGroup) {
         if (!isOwner) {
@@ -78,15 +86,6 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       chat.antiLink = isEnable
       break 
-    case 'antisticker':
-      if (m.isGroup) {
-        if (!(isAdmin || isOwner)) {
-          global.dfail('admin', m, conn)
-          throw false
-        }
-      }
-      chat.antiSticker = isEnable
-      break
     case 'autosticker':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
@@ -95,6 +94,15 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
         }
       }
       chat.stiker = isEnable
+      break
+    case 'antibot':
+      if (m.isGroup) {
+        if (!(isAdmin || isOwner)) {
+          global.dfail('admin', m, conn)
+          throw false
+        }
+      }
+      chat.antiBot = isEnable
       break
     case 'toxic':
       if (m.isGroup) {
@@ -181,6 +189,24 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       global.opts['swonly'] = isEnable
       break
+    case 'antifoto':
+      if (m.isGroup) {
+      if (!(isAdmin || isOwner)) {
+        global.dfail('admin', m, conn)
+        throw false
+      }
+    }
+      chat.antiFoto = isEnable
+      break
+    case 'antisticker':
+    if (m.isGroup) {
+      if (!(isAdmin || isOwner)) {
+        global.dfail('admin', m, conn)
+        throw false
+      }
+    }
+    chat.antiSticker = isEnable
+    break
     case 'viewonce':
       if (m.isGroup) {
         if (!(isAdmin || isOwner)) {
@@ -189,19 +215,40 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
         }
       }
       chat.viewonce = isEnable
+    break
+    case 'antifile':
+      if (m.isGroup) {
+        if (!(isAdmin || isOwner)) {
+          global.dfail('admin', m, conn)
+          throw false
+        }
+      }
+      chat.antifile = isEnable
+    break
+    case 'antivideo':
+      if (m.isGroup) {
+        if (!(isAdmin || isOwner)) {
+          global.dfail('admin', m, conn)
+          throw false
+        }
+      }
+      chat.antivideo = isEnable
       break
     default:
       if (!/[01]/.test(command)) return m.reply(`
 List option:
+| notifgempa
 | welcome
 | delete
+| antibot
 | public
 | antilink
 | antidelete
-| antisticker
 | autosticker
 | autolevelup
+| antisticker
 | detect
+| viewonce
 | document
 | whitelistmycontacts
 | restrict
@@ -214,7 +261,7 @@ Contoh:
 ${usedPrefix}enable welcome
 ${usedPrefix}disable welcome
 `.trim())
-      throw false
+      throw 'error'
   }
   m.reply(`
 *${type}* berhasil di *${isEnable ? 'nyala' : 'mati'}kan* ${isAll ? 'untuk bot ini' : isUser ? '' : 'untuk chat ini'}
