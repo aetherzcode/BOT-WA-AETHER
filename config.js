@@ -14,10 +14,10 @@ global.packname = 'Made With'
 global.author = 'Bot WhatsApp'
 global.maxwarn = '2' // Peringatan maksimum
 
-global.lann = 'btzaetherzcode' 
+global.lann = '-' 
 
 //INI OPTIONAL SIH BOLEH DI ISI BOLEH JUGA ENGGA//
-global.btc = 'I9ImjQfY'
+global.btc = '-'
 //Daftar https://api.botcahx.eu.org 
 
 global.APIs = {   
@@ -25,8 +25,8 @@ global.APIs = {
   btc: 'https://api.botcahx.eu.org'
 }
 global.APIKeys = { 
-  'https://api.betabotz.eu.org': 'btzaetherzcode', 
-  'https://api.botcahx.eu.org': 'I9ImjQfY'
+  'https://api.betabotz.eu.org': '-', 
+  'https://api.botcahx.eu.org': '-'
 }
 
 let fs = require('fs')
