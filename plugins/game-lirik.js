@@ -1,23 +1,44 @@
-const similarity = require('similarity')
-const threshold = 0.72
-let handler = m => m
-handler.before = async function (m) {
+let fetch = require('node-fetch')
+
+let timeout = 100000
+let poin = 10000
+let handler = async (m, { conn, usedPrefix }) => {
+    conn.tebaklirik = conn.tebaklirik ? conn.tebaklirik : {}
     let id = m.chat
-    if (!m.quoted || !m.quoted.fromMe || !m.quoted.isBaileys || !/Ketik.*liga/i.test(m.quoted.text)) return !0
-    this.tebaklirik = this.tebaklirik ? this.tebaklirik : {}
-    if (!(id in this.tebaklirik)) return m.reply('Soal itu telah berakhir')
-    if (m.quoted.id == this.tebaklirik[id][0].id) {
-        let json = JSON.parse(JSON.stringify(this.tebaklirik[id][1]))
-        if (m.text.toLowerCase() == json.answer.toLowerCase().trim()) {
-            global.db.data.users[m.sender].exp += this.tebaklirik[id][2]
-            m.reply(`*Benar!*\n+${this.tebaklirik[id][2]} Kredit sosial`)
-            clearTimeout(this.tebaklirik[id][3])
-            delete this.tebaklirik[id]
-        } else if (similarity(m.text.toLowerCase(), json.answer.toLowerCase().trim()) >= threshold) m.reply(`*Dikit Lagi!*`)
-        else m.reply(`*Salah!*`)
+    if (id in conn.tebaklirik) {
+        conn.reply(m.chat, 'Masih ada soal belum terjawab di chat ini', conn.tebaklirik[id][0])
+        throw false
     }
-    return !0
+    // di sini dia ngambil data dari api
+    let src = await (await fetch(`https://api.betabotz.eu.org/api/game/tebaklirik?apikey=${lann}`)).json()
+    let json = src[Math.floor(Math.random() * src.length)]
+    // buat caption buat di tampilin di wa
+    let caption = `
+${json.question}
+
+┌─⊷ *SOAL*
+▢ Timeout *${(timeout / 1000).toFixed(2)} detik*
+▢ Ketik ${usedPrefix}liga untuk bantuan
+▢ Bonus: ${poin} money
+▢ *Balas/ replay soal ini untuk menjawab*
+└──────────────
+`.trim()
+    conn.tebaklirik[id] = [
+        await conn.reply(m.chat, caption, m),
+        json, poin,
+        setTimeout(() => {
+            if (conn.tebaklirik[id]) conn.reply(m.chat, `Waktu habis!\nJawabannya adalah *${json.answer}*`, conn.tebaklirik[id][0])
+            delete conn.tebaklirik[id]
+        }, timeout)
+    ]
 }
-handler.exp = 0
+handler.help = ['tebaklirik']
+handler.tags = ['game']
+handler.command = /^tebaklirik/i
+handler.register = false
+handler.group = true
 
 module.exports = handler
+
+// tested di bileys versi 6.5.0 dan sharp versi 0.30.5
+// danaputra133
