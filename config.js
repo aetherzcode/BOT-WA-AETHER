@@ -13,11 +13,14 @@ global.stiker_wait = '*⫹⫺ Stiker sedang dibuat...*'
 global.packname = 'Made With'
 global.author = 'Bot WhatsApp'
 global.maxwarn = '2' // Peringatan maksimum
+global.antiporn = true // Auto delete pesan porno (bot harus admin)
 
-global.lann = '-' 
+//INI WAJIB DI ISI!//
+global.lann = 'YOUR_APIKEY_HERE' 
+//Daftar terlebih dahulu https://api.betabotz.eu.org 
 
 //INI OPTIONAL SIH BOLEH DI ISI BOLEH JUGA ENGGA//
-global.btc = '-'
+global.btc = 'YOUR_APIKEY_HERE'
 //Daftar https://api.botcahx.eu.org 
 
 global.APIs = {   
@@ -25,8 +28,8 @@ global.APIs = {
   btc: 'https://api.botcahx.eu.org'
 }
 global.APIKeys = { 
-  'https://api.betabotz.eu.org': '-', 
-  'https://api.botcahx.eu.org': '-'
+  'https://api.betabotz.eu.org': 'YOUR_APIKEY_HERE', 
+  'https://api.botcahx.eu.org': 'YOUR_APIKEY_HERE'
 }
 
 let fs = require('fs')
