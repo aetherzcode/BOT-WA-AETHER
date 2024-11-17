@@ -4,8 +4,8 @@ let schedule = require ('node-schedule')
 const timeZone = 'Asia/Jakarta';
 
 // Konfigurasi waktu tutup dan buka grup
-const closeTime = '23:35'; // tutup grub
-const openTime = '04:15'; // buka grub
+const closeTime = '00:00'; // tutup grub
+const openTime = '04:00'; // buka grub
 
 // Daftar ID grup yang ingin dikelola
 const groupChats = [
