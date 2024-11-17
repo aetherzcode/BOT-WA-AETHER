@@ -1,8 +1,3 @@
-/* TITENI NEK DIHAPUS
-* BY NAAAZZZ
-* NANDA
-* JOIN SL COMMUNITY 
-*/
 const { drawBoard } = require('../lib/ular_tangga.js');
 
 const getRandom = function (array) {
