@@ -32,7 +32,7 @@
 
 ```javascript
 git clone https://github.com/aetherzcode/BOT-WA-AETHER
-cd BETABOTZ-MD2
+cd BOT-WA-AETHER
 npm i
 npm start
 ```
