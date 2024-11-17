@@ -1,3 +1,4 @@
+/*
 let badwordRegex = /anj|asw|kont|ToIol|gblk|T0lol|Bgsd|ajn|anjingk|bajingan|bangsat|kontol|memek|pepekq|meki|titit|peler|tetek|toket|ngewe|goblok|tolol|idiot|ngentotd|jembut|bego|dajjal|jancuk|pantek|pukimak|kimak|kampang|lonte|colimek|pelacur|henceut|nigga|fuck|dick|bitch|tits|bastard|asshole/i; // tambahin sendiri
 
 async function before(m, { isBotAdmin }) {
@@ -13,9 +14,10 @@ PERINGATAN JANGAN GUNAKAN KATA TOXIC UNTUK KENYAMANAN CHAT!
 `);    
         
     }
-    return true;
+    return false;
 }
 
 module.exports = { before };
 
 //kalau mau fitur kick jalan emang agak ribet harus restart bot gak tau kenapa
+*/
