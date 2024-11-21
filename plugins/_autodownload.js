@@ -242,6 +242,169 @@ async function downloadFacebook(link, m) {
 		console.error(error);
 	}
 }
+// DOWNLOADER SPOTIFY
+async function _spotify(link, m) {
+	try {
+		if (global.db.data.users[m
+				.sender].limit >
+			0) {
+				const res = await fetch(`https://api.betabotz.eu.org/api/download/spotify?url=${link}&apikey=${lann}`)
+			    global.db.data.users[m.sender].limit -= 1
+				let jsons = await res.json()
+				const {
+					thumbnail,
+					title,
+					name,
+					duration,
+					url
+				} = jsons.result.data
+				const {
+					id,
+					type
+				} = jsons.result.data.artist
+				await conn.sendMessage(m.chat, { audio: { url: url }, mimetype: 'audio/mpeg', contextInfo: {
+						externalAdReply: {
+							title: title,
+							body: "",
+							thumbnailUrl: thumbnail,
+							sourceUrl: url,
+							mediaType: 1,
+							showAdAttribution: true,
+							renderLargerThumbnail: true
+						}}} , { quoted: m })
+		}
+		else {
+			conn.reply(m.chat,
+				"Limit kamu habis!",
+				m);
+		}
+	}
+	catch (error) {
+		console.error(error);
+	}
+}
+// DOWNLOADER TWITTER
+async function _twitter(link, m) {
+	try {
+		if (global.db.data.users[m
+				.sender].limit >
+			0) {
+			const api = await fetch(`https://api.betabotz.eu.org/api/download/twitter2?url=${link}&apikey=${lann}`);
+			global.db.data.users[m.sender].limit -= 1
+			const res = await api.json();
+			const mediaURLs = res.result.mediaURLs;
+
+			const capt = `*Username: ${res.result.user_name} ${res.result.user_screen_name}*\n*Title: ${res.result.text}*\n*Replies: ${res.result.replies}*\n*Retweet: ${res.result.retweets}*`;
+
+			for (const url of mediaURLs) {
+				const response = await fetch(url);
+				const buffer = await response.buffer();
+				await delay(3000)//3 detik jeda agar tidak spam
+				conn.sendFile(m.chat, buffer, null, capt, m);
+			}
+			function delay(ms) {
+				return new Promise(resolve => setTimeout(resolve, ms));
+			}
+
+		}
+		else {
+			conn.reply(m.chat,
+				"Limit kamu habis!",
+				m);
+		}
+	}
+	catch (error) {
+		console.error(error);
+	}
+}
+// DOWNLOADER THREADS
+async function _threads(link, m) {
+	try {
+		if (global.db.data.users[m
+				.sender].limit >
+			0) {
+			const api = await fetch(`https://api.betabotz.eu.org/api/download/threads?url=${link}&apikey=${lann}`).then(results => results.json());
+			global.db.data.users[m
+				.sender]
+				.limit -= 1;
+			const foto = api.result.image_urls[0] || null;
+			const video = api.result.video_urls[0] || null;
+			if (video) {
+				try {
+					conn.sendFile(m.chat, video.download_url, 'threads.mp4', '*THREADS DOWNLOADER*', m);
+				} catch (e) {
+					throw `Media video tidak ditemukan!`;
+				}
+			} else if (foto) {
+				try {
+					conn.sendFile(m.chat, foto, 'threads.jpeg', '*THREADS DOWNLOADER*', m);
+				} catch (e) {
+					throw `Media foto tidak ditemukan!`;
+				}
+			} else {
+				throw `Konten tidak ditemukan!`;
+			}
+
+		}
+		else {
+			conn.reply(m.chat,
+				"Limit kamu habis!",
+				m);
+		}
+	}
+	catch (error) {
+		console.error(error);
+	}
+}
+// DOWNLOADER CAPCUT
+async function _capcut(link, m) {
+	try {
+		if (global.db.data.users[m
+				.sender].limit >
+			0) {
+			const response = await fetch(`https://api.betabotz.eu.org/api/download/capcut?url=${link}&apikey=${lann}`);
+			global.db.data.users[m.sender].limit -= 1
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
+			}
+
+			const res = await response.json();
+			const {
+				video,
+				title,
+				owner
+			} = res.result;
+
+			await conn.sendFile(m.chat, video, 'capcut.mp4', `Title: ${title}\n\nProfile: ${owner}`, m);
+		}
+		else {
+			conn.reply(m.chat,
+				"Limit kamu habis!",
+				m);
+		}
+	}
+	catch (e) {
+		console.error(e);
+	}
+}
+// DOWNLOADER SNACKVIDEO
+async function _snackvideo(url, m) {
+	try {
+		if (global.db.data.users[m
+				.sender].limit >
+			0) {
+		}
+		else {
+			conn.reply(m.chat,
+				"Limit kamu habis!",
+				m);
+		}
+	}
+	catch (e) {
+		console.log(e);
+	}
+}
+
 /**=========================================**/
 
 handler.before = async function (m, {conn, isPrems}) {
@@ -270,7 +433,13 @@ handler.before = async function (m, {conn, isPrems}) {
 	const instagramRegex = /^(?:https?:\/\/)?(?:www\.)?(?:instagram\.com\/)(?:tv\/|p\/|reel\/)(?:\S+)?$/i;
 	const facebookRegex = /^(?:https?:\/\/(web\.|www\.|m\.)?(facebook|fb)\.(com|watch)\S+)?$/i;
 	const youtubeRegex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([\w\-]{11})(?:\?[\S]*)?$/i;
-	const pinterestRegex = /^(?:https?:\/\/)?(?:[a-z]{2}\.)?pinterest\.com\/pin\/(\d+)\/?$/i;
+	// const pinterestRegex = /^(?:https?:\/\/)?(?:[a-z]{2}\.)?pinterest\.com\/pin\/(\d+)\/?$/i;
+	const pinterestRegex = /^(?:https?:\/\/)?(?:pin\.it)\/([a-zA-Z0-9]+)$/i;
+	const spotifyRegex = /^(?:https?:\/\/)?(?:open\.spotify\.com\/track\/)([a-zA-Z0-9]+)(?:\S+)?$/i;
+	const twitterRegex = /^(?:https?:\/\/)?(?:www\.)?(?:twitter\.com|x\.com)\/([A-Za-z0-9_]+)\/status\/(\d+)(?:\?[^#]*)?(?:#.*)?$/i;
+	const threadsRegex = /^(https?:\/\/)?(www\.)?threads\.net(\/[^\s]*)?(\?[^\s]*)?$/;
+	const capcutRegex = /^https:\/\/www\.capcut\.com\/(t\/[A-Za-z0-9_-]+\/?|template-detail\/\d+\?(?:[^=]+=[^&]+&?)+)$/;
+	const snackvideoRegex = /^(https?:\/\/)?s\.snackvideo\.com\/p\/[a-zA-Z0-9]+$/i;
 	// const teraboxRegex = /^(?:https?:\/\/)?(?:www\.)?terabox\.com\/s\/([\w\-]+)(?:\?[\S]*)?$/i;
 
 	if (text.match(tiktokRegex)) {
@@ -333,7 +502,81 @@ handler.before = async function (m, {conn, isPrems}) {
 	// 	})
 	// 	await downloadtera(text.match(teraboxRegex)[0], m);
 	// }
-
+	else if (text.match(
+		spotifyRegex)) {
+		conn.sendMessage(m
+			.chat, {
+			react: {
+				text: "✅",
+				key: m
+					.key,
+			},
+		});
+		await _spotify(text
+			.match(
+				spotifyRegex
+			)[0], m);
+	}
+	else if (text.match(
+		twitterRegex)) {
+		conn.sendMessage(m
+			.chat, {
+			react: {
+				text: "✅",
+				key: m
+					.key,
+			},
+		});
+		await _twitter(text
+			.match(
+				twitterRegex
+			)[0], m);
+	}
+	else if (text.match(
+		threadsRegex)) {
+		conn.sendMessage(m
+			.chat, {
+			react: {
+				text: "✅",
+				key: m
+					.key,
+			},
+		});
+		await _threads(text
+			.match(
+				threadsRegex
+			)[0], m);
+	}
+	else if (text.match(
+		capcutRegex)) {
+		conn.sendMessage(m
+			.chat, {
+			react: {
+				text: "✅",
+				key: m
+					.key,
+			},
+		});
+		await _capcut(text
+			.match(
+				capcutRegex
+			)[0], m);
+	}
+	else if (text.match(
+		snackvideoRegex)) {
+		conn.sendMessage(m
+			.chat, {
+			react: {
+				text: "✅",
+				key: m
+					.key,
+			},
+		});
+		await _snackvideo(text
+			.match(
+				snackvideoRegex
+			)[0], m);
+	}
 	return !0;
 }
 
