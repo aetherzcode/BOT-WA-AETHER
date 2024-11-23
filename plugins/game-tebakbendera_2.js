@@ -32,13 +32,10 @@ ${json.bendera}
         }, timeout)
     ]
 }
-handler.help = ['tebakbendera2']
+handler.help = ['tebakbendera']
 handler.tags = ['game']
-handler.command = /^tebakbendera2/i
+handler.command = /^tebakbendera/i
 handler.register = false
 handler.group = true
 
 module.exports = handler
-
-// tested di bileys versi 6.5.0 dan sharp versi 0.30.5
-// danaputra133
