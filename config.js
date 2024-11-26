@@ -16,7 +16,7 @@ global.maxwarn = '2' // Peringatan maksimum
 global.antiporn = true // Auto delete pesan porno (bot harus admin)
 
 //INI WAJIB DI ISI!//
-global.lann = 'YOUR_APIKEY_HERE' 
+global.lann = 'btzaetherzcode' 
 //Daftar terlebih dahulu https://api.betabotz.eu.org 
 
 //INI OPTIONAL SIH BOLEH DI ISI BOLEH JUGA ENGGA//
@@ -28,7 +28,7 @@ global.APIs = {
   btc: 'https://api.botcahx.eu.org'
 }
 global.APIKeys = { 
-  'https://api.betabotz.eu.org': 'YOUR_APIKEY_HERE', 
+  'https://api.betabotz.eu.org': 'btzaetherzcode', 
   'https://api.botcahx.eu.org': 'YOUR_APIKEY_HERE'
 }
 
