@@ -1,6 +1,6 @@
-global.owner = ['6285798045817']  
-global.mods = ['6285798045817'] 
-global.prems = ['6285798045817']
+global.owner = ['6285798045817', '6285864727063']  
+global.mods = ['6285798045817', '6285864727063'] 
+global.prems = ['6285798045817', '6285864727063']
 global.nameowner = 'ᴀᴇᴛʜᴇʀ'
 global.numberowner = '6285798045817'
 global.mail = 'aetherscode@gmail.com' 
