@@ -225,12 +225,12 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
       }
       chat.antifile = isEnable
     break
-  case 'autobackupdb':
+  case 'autobackup':
       if (!isROwner) {
           global.dfail('rowner', m, conn)
           throw false
         }
-      bot.backupDB = isEnable
+        chat.autobackup = isEnable
       break 
     case 'antivideo':
       if (m.isGroup) {
@@ -271,10 +271,21 @@ let handler = async (m, { conn, usedPrefix, command, args, isOwner, isAdmin, isR
           chat.autobio = isEnable
       } else return global.dfail('group', m, conn)
       break
+      case 'rpg':
+        if (m.isGroup) {
+          if (!(isAdmin || isOwner)) {
+            global.dfail('admin', m, conn)
+            throw false
+          }
+        }
+        chat.rpg = isEnable
+        break
       
     default:
       if (!/[01]/.test(command)) return m.reply(`
 List option:
+| autobackup
+| rpg
 | autobio
 | notifgempa
 | antiporn
