@@ -2,7 +2,7 @@ let fetch = require('node-fetch')
 
 let handler = async (m, { conn, command }) => {
 let audio = 'src/AETHERZBOTZ.mp3'
-const img = await fetch(`https://aether-cdn.onrender.com/f/y1jpxc2m.jpeg`).then(res => res.buffer())
+const img = await fetch(`https://cdn.discordapp.com/attachments/1287434775111405635/1312389470229762109/upload.png?ex=674c5170&is=674afff0&hm=925dda410cac0684b4325f9f9f9b2c2930ad13eae2fdbfb670d156e91b667d4a&`).then(res => res.buffer())
 let text = `🎵 Lagu AetherzBotz 🎵
 
 (Verse 1)
