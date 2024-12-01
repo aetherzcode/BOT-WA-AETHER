@@ -1,57 +1,80 @@
-let {
-	proto
-} = (await import('@adiwajshing/baileys')).default
+let isAutoResetEnabled = false; 
+let autoResetTimeout = null; 
 
-export async function all(m) {
-	let setting = global.db.data.settings[this.user.jid]
-	if (setting.resetlimit) {
-		if (new Date() * 1 - setting.resetlimitDB > 604800000) { // waktu reset 7day = 604800000. kamu bisa tanyakan Ai contoh: .bing 1 hari berapa milidetik?
-			let list = Object.entries(global.db.data.users);
-			let lim = 10;
-			list.map(([user, data], i) => (Number(data.limit = lim)));
-			let anu = {
-				"key": {
-					"fromMe": false,
-					"participant": "0@s.whatsapp.net",
-					"remoteJid": "0@s.whatsapp.net"
-				},
-				"message": {
-					"groupInviteMessage": {
-						"groupJid": "120363298036479484@g.us",
-						"inviteCode": "AETHER",
-						"groupName": "AETHERZBOTZ Powered by AETHER",
-						"caption": "https://aetherz.xyz",
-						'jpegThumbnail': "https://cdn.discordapp.com/attachments/1287434775111405635/1312389470229762109/upload.png?ex=674c5170&is=674afff0&hm=925dda410cac0684b4325f9f9f9b2c2930ad13eae2fdbfb670d156e91b667d4a&"
-					}
-				}
-			}
-			conn.sendMessage(global.info.nomorown + '@s.whatsapp.net', {
-				text: `*Berhasil mereset setiap limit user menjadi ${lim}*`
-			}, {
-				quoted: anu
-			})
+let handler = async (m, { conn, args, command }) => {
+    let lim = 10; 
 
-			const msg = {
-				conversation: `*Berhasil mereset setiap limit user menjadi ${lim}*`
-			};
-			const plaintext = proto.Message.encode(msg).finish();
-			const plaintextNode = {
-				tag: 'plaintext',
-				attrs: {},
-				content: plaintext,
-			};
-			const node = {
-				tag: 'message',
-				attrs: {
-					to: global.info.channel,
-					type: 'text'
-				},
-				content: [plaintextNode],
-			};
+    if (args.length === 0) {
+        
+        return conn.reply(
+            m.chat,
+            `*'on' atau 'off'!*\n\nContoh:\n- *.${command} on* untuk mengaktifkan reset otomatis setiap jam 00:00\n- *.${command} off* untuk menonaktifkan reset otomatis`,
+            null
+        );
+    }
 
-			conn.query(node);
-			setting.resetlimitDB = new Date() * 1
-		}
-	}
-	return !0
+    if (args[0] === 'on') {
+        if (isAutoResetEnabled) {
+            return conn.reply(m.chat, `*Reset limit otomatis sudah aktif!*`, null);
+        }
+        isAutoResetEnabled = true;
+        scheduleDailyReset(conn, lim);
+        conn.reply(m.chat, `*Reset limit otomatis akan dijalankan setiap jam 00:00.*`, null);
+    } else if (args[0] === 'off') {
+        if (!isAutoResetEnabled) {
+            return conn.reply(m.chat, `*Reset limit otomatis sudah nonaktif!*`, null);
+        }
+        isAutoResetEnabled = false;
+        cancelScheduledReset(); 
+        conn.reply(m.chat, `*Reset limit otomatis dinonaktifkan.*`, null);
+    } else {
+        return conn.reply(
+            m.chat,
+            `*Argumen tidak valid!*\nHarap gunakan 'on' atau 'off'.\n\nContoh penggunaan:\n- *.${command} on*\n- *.${command} off*`,
+            null
+        );
+    }
+};
+
+
+function resetLimit(conn, lim) {
+    let list = Object.entries(global.db.data.users);
+    list.map(([user, data]) => (Number(data.limit = lim)));
+    conn.reply('120363361439264023@g.us', `*Limit berhasil direset ${lim} / user*`, null); // Kirim info ke grup tertentu
 }
+
+function getTimeUntilMidnight() {
+    let now = new Date();
+    let nextMidnight = new Date(now);
+    nextMidnight.setHours(24, 0, 0, 0); 
+    return nextMidnight - now;
+}
+
+
+function scheduleDailyReset(conn, lim) {
+    let timeUntilMidnight = getTimeUntilMidnight();
+
+    autoResetTimeout = setTimeout(() => {
+        if (isAutoResetEnabled) {
+            console.log(`Mereset limit pengguna menjadi ${lim}`);
+            resetLimit(conn, lim); 
+            scheduleDailyReset(conn, lim); 
+        }
+    }, timeUntilMidnight); 
+}
+
+
+function cancelScheduledReset() {
+    if (autoResetTimeout) {
+        clearTimeout(autoResetTimeout); 
+        autoResetTimeout = null;
+    }
+}
+
+handler.help = ['resetauto'].map(v => 'on/off' + v);
+handler.tags = ['owner'];
+handler.command = /^(resetauto|rli)$/i;
+
+handler.owner = true;
+
+module.exports = handler;
