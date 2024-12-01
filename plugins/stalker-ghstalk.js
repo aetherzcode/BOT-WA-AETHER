@@ -1,7 +1,7 @@
 let fetch = require('node-fetch')
 
 let handler = async (m, { text, usedPrefix, command }) => {
-    if (!text) throw `*Example:* ${usedPrefix + command} ERLANRAHMAT`   
+    if (!text) throw `*Example:* ${usedPrefix + command} aetherzcode`   
     try {     
         let json = await fetch(`https://api.betabotz.eu.org/api/stalk/github?username=${text}&apikey=${lann}`).then(res => res.json());
         let caption = `⦿  *G H - S T A L K*\n\n`
