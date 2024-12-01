@@ -171,7 +171,7 @@ let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
                             previewType: 0,
                             renderLargerThumbnail: true,
                             thumbnailUrl: 'https://files.catbox.moe/cunu9a.jpg',
-                            sourceUrl: 'https://whatsapp.com/channel/0029VawC7x859PwJpRifcy2G'
+                            sourceUrl: 'https://whatsapp.com/channel/0029VaytwYK1t90iXAvaO62s'
                         }
                     },
                     mentions: [m.sender]
@@ -223,7 +223,7 @@ let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
                         previewType: 0,
                         renderLargerThumbnail: true,
                         thumbnailUrl: 'https://files.catbox.moe/cunu9a.jpg',
-                        sourceUrl: 'https://whatsapp.com/channel/0029VawC7x859PwJpRifcy2G'
+                        sourceUrl: 'https://whatsapp.com/channel/0029VaytwYK1t90iXAvaO62s'
                     }
                 }, 
                 mentions: [m.sender]
