@@ -40,7 +40,7 @@ let handler = async (m, { conn, args, command }) => {
 function resetLimit(conn, lim) {
     let list = Object.entries(global.db.data.users);
     list.map(([user, data]) => (Number(data.limit = lim)));
-    conn.reply('120363361439264023@g.us', `*Limit berhasil direset ${lim} / user*`, null); // Kirim info ke grup tertentu
+    conn.reply('120363298036479484@g.us', `*Limit berhasil direset ${lim} / user*`, null); // Kirim info ke grup tertentu
 }
 
 function getTimeUntilMidnight() {
