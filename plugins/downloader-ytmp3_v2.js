@@ -1,4 +1,4 @@
-const axios = require("axios");
+const axios = require('axios');
 
 const SaveTube = {
     qualities: {
@@ -78,15 +78,15 @@ const SaveTube = {
     }
 };
 
-let handler = async (m, { conn, args, text, sendSticker, otw }) => {
-    if (!text) throw `Example .ytmp3-v2 linkvideo -kualitas audio\naudio: 1: '32', 2: '64', 3: '128', 4: '192'`;
+const handler = async (m, { conn, args, text, sendSticker, otw }) => {
+    if (!text) throw `Example .ytmp3 linkvid -kualitas audio\naudio: 1: '32', 2: '64', 3: '128', 4: '192'`;
     try {
         sendSticker(otw);
 
         const [url, qualityArg] = args.join(" ").split(" -");
         const qualityIndex = parseInt(qualityArg, 10);
         if (!url || isNaN(qualityIndex)) {
-            throw `❌ Format salah! Gunakan format: .ytmp3-v2 <link> -<kualitas>\nContoh: .ytmp3-v2 https://youtu.be/example -3`;
+            throw `❌ Format salah! Gunakan format: .ytmp3 <link> -<kualitas>\nContoh: .ytmp3 https://youtu.be/example -3`;
         }
 
         const result = await SaveTube.dl(url, qualityIndex, 1);
@@ -103,12 +103,12 @@ let handler = async (m, { conn, args, text, sendSticker, otw }) => {
             {
                 text: caption,
                 contextInfo: {
-        forwardingScore: 1,
-        isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: "[ AETHER INFOMATION ]",
-          newsletterName: "120363354653620526@newsletter",
-        },
+                    forwardingScore: 1,
+                    isForwarded: true,
+                    forwardedNewsletterMessageInfo: {
+                        newsletterJid: "[ AETHER INFORMATION ]",
+                        newsletterName: "120363354653620526@newsletter",
+                    },
                     externalAdReply: {
                         title: title,
                         thumbnailUrl: thumbnail,
@@ -127,12 +127,12 @@ let handler = async (m, { conn, args, text, sendSticker, otw }) => {
                 audio: { url: link },
                 mimetype: 'audio/mpeg',
                 contextInfo: {
-        forwardingScore: 1,
-        isForwarded: true,
-        forwardedNewsletterMessageInfo: {
-          newsletterJid: " [ AETHER INFOMATION ]",
-          newsletterName: "120363354653620526@newsletter",
-        },
+                    forwardingScore: 1,
+                    isForwarded: true,
+                    forwardedNewsletterMessageInfo: {
+                        newsletterJid: "[ AETHER INFORMATION ]",
+                        newsletterName: "120363354653620526@newsletter",
+                    },
                     externalAdReply: {
                         title: `Audio File - ${title}`,
                         body: 'Download Success!',
@@ -152,6 +152,8 @@ let handler = async (m, { conn, args, text, sendSticker, otw }) => {
 };
 
 handler.tags = ["downloader"];
-handler.command = ["ytmp3-v2"];
-handler.help = ["ytmp3-v2"];
+handler.command = ["ytmp3-v2", "yta-v2"];
+handler.help = ["ytmp3-v2", "yta-v2"];
+handler.limit = true
+handler.register = true
 module.exports = handler;
