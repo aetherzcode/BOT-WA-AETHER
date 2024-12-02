@@ -1,6 +1,6 @@
-const moment = require('moment-timezone');
+const moment = require("moment-timezone");
 
-export async function before(m) {
+async function before(m) {
     this.autosholat = this.autosholat || {};
 
     const chatIds = ["120363298036479484@g.us", "120363369124606444@g.us", "6285798045817@s.whatsapp.net"]; //buat kasih notif reminder dri id bisa id grup atau id nomor wa
@@ -85,4 +85,7 @@ export async function before(m) {
     }
 }
 
-exports.disabled = false;
+module.exports = {
+    before,
+    disabled: false,
+};
