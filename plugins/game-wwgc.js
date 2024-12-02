@@ -165,10 +165,7 @@ let handler = async (m, {
             return m.reply("Sesi permainan telah dimulai");
         if (ww[chat].owner !== sender)
             return m.reply(
-                `Hanya @${ww[chat].owner.split("@")[0]} yang dapat memulai permainan`, {
-                    withTag: true
-                }
-            );
+                `Hanya pemain yang membuat room yang dapat memulai permainan`);
         let list1 = "";
         let list2 = "";
         let player = [];
@@ -305,7 +302,12 @@ let handler = async (m, {
         if (getPlayerById(chat, sender, parseInt(target), ww) === false)
             return m.reply("Player tidak terdaftar!");
         vote(chat, parseInt(target), sender, ww);
-        return m.reply("✅ Vote");
+        conn.sendMessage(m.chat, {
+            react: {
+                text: '✅',
+                key: m.key,
+            }
+        })
     } else if (value == "exit") {
         if (!ww[chat]) return m.reply("Tidak ada sesi permainan");
         if (playerOnRoom(sender, chat, ww) === false)
