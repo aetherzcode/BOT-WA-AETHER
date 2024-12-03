@@ -10,7 +10,8 @@ const openTime = '04:00'; // buka grub
 // Daftar ID grup yang ingin dikelola
 const groupChats = [
     // Ganti dengan ID grup yang sesuai
-    '120363298036479484@g.us'  //  ID grup di sini bisa di ambil dari exac => m di grub kamu
+    '120363298036479484@g.us',
+    '120363369124606444@g.us'  //  ID grup di sini bisa di ambil dari exac => m di grub kamu
 ];
 
 // Variabel status grup dan nama asli grup
@@ -53,7 +54,7 @@ const checkGroupsStatus = async (conn) => {
         if (currentTime === closeTime && groupStatus[chatId] !== 'closed') {
             await conn.groupSettingUpdate(chatId, 'announcement');
             await conn.groupUpdateSubject(chatId, `${originalGroupNames[chatId]} (𝗖𝗟𝗢𝗦𝗘)`);
-            await conn.sendMessage(chatId, { text: `( OTOMATIS ) 𝖦𝖱𝖮𝖴𝖯 𝖢𝖫𝖮𝖲𝖤, 𝖣𝖠𝖭 𝖠𝖪𝖠𝖭 𝖣𝖨𝖡𝖴𝖪𝖠 𝖩𝖠𝖬 ${closeTime} 𝖶𝖨𝖡` });
+            await conn.sendMessage(chatId, { text: `( OTOMATIS ) 𝖦𝖱𝖮𝖴𝖯 𝖢𝖫𝖮𝖲𝖤, 𝖣𝖠𝖭 𝖠𝖪𝖠𝖭 𝖣𝖨𝖡𝖴𝖪𝖠 𝖩𝖠𝖬 ${openTime} 𝖶𝖨𝖡` });
             groupStatus[chatId] = 'closed';
             reminderSent[`${chatId}-close`] = false; // Reset pengingat
         }
@@ -62,7 +63,7 @@ const checkGroupsStatus = async (conn) => {
         if (currentTime === openTime && groupStatus[chatId] !== 'opened') {
             await conn.groupSettingUpdate(chatId, 'not_announcement');
             await conn.groupUpdateSubject(chatId, originalGroupNames[chatId]); // Kembalikan nama asli grup
-            await conn.sendMessage(chatId, { text: `( OTOMATIS ) 𝖦𝖱𝖮𝖴𝖯 𝖮𝖯𝖤𝖭, 𝖣𝖠𝖭 𝖠𝖪𝖠𝖭 𝖣𝖨𝖳𝖴𝖳𝖴𝖯 𝖩𝖠𝖬 ${openTime} 𝖶𝖨𝖡` });
+            await conn.sendMessage(chatId, { text: `( OTOMATIS ) 𝖦𝖱𝖮𝖴𝖯 𝖮𝖯𝖤𝖭, 𝖣𝖠𝖭 𝖠𝖪𝖠𝖭 𝖣𝖨𝖳𝖴𝖳𝖴𝖯 𝖩𝖠𝖬 ${closeTime} 𝖶𝖨𝖡` });
             groupStatus[chatId] = 'opened';
             reminderSent[`${chatId}-open`] = false; // Reset pengingat
         }
