@@ -7,7 +7,6 @@ const timeZone = 'Asia/Jakarta';
 const groupChats = [
     '120363298036479484@g.us',
     '120363369124606444@g.us',
-    '6285798045817@s.whatsapp.net',
 ];
 
 
