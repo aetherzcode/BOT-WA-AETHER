@@ -1,5 +1,5 @@
 {
-    "name": "AETHERBOT",
+    "name": "AETHERZBOTZ",
     "version": "2.0.0",
     "description": "AETHER WhatsApp Bot",
     "depecrated": false,
@@ -29,7 +29,7 @@
     ],
     "homepage": "https://github.com/aetherzcode/BOT-WA-AETHER",
     "author": {
-        "name": "AETHERBOT"
+        "name": "AETHERZBOTZ"
     },
     "repository": {
         "type": "git",
