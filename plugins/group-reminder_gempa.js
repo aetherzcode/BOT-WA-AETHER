@@ -3,7 +3,7 @@ const { setInterval } = require('timers');
 
 const groupChats = [
     '120363298036479484@g.us',
-    '120363369124606444@g.us'
+    '120363369124606444@g.us',
 ];
 
 let lastGempaData = null;
