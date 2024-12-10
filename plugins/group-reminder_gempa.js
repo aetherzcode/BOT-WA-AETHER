@@ -2,7 +2,8 @@ const axios = require('axios');
 const { setInterval } = require('timers');
 
 const groupChats = [
-    'jid@g.us',
+    '120363298036479484@g.us',
+    '120363369124606444@g.us'
 ];
 
 let lastGempaData = null;
