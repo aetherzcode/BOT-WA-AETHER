@@ -1,78 +1,92 @@
-const { G4F } = require("g4f");
-let Airi = new G4F();
+const fetch = require('node-fetch');
+const search = require('yt-search');
+const axios = require('axios');
 
-let handler = async (m, { conn, text }) => {
-    conn.autoai = conn.autoai ? conn.autoai : {};
+let handler = async (m, { conn, text, usedPrefix, command }) => {
+    conn.aetherzz = conn.aetherzz || {};
 
-    if (!text) throw `*• Example:* .aetherz *[on/off]*`;
+    if (!text) throw `*• Example:* ${usedPrefix}${command} *[on/off]*`;
 
-    if (text === "on") {
-        conn.autoai[m.sender] = {
-            pesan: []
-        };
-        m.reply("Halo sensei! aetherz siap membantu sensei");
-    } else if (text === "off") {
-        delete conn.autoai[m.sender];
-        m.reply("Senang sudah membantu sensei");
+    if (text.toLowerCase() === "on") {
+        conn.aetherzz[m.sender] = { pesan: [] };
+        m.reply("[ ✓ ] Berhasil Membuat Sesi Chat AETHERz-AI");
+    } else if (text.toLowerCase() === "off") {
+        delete conn.aetherzz[m.sender];
+        m.reply("[ ✓ ] Berhasil Menghapus Sesi Chat AETHERz-AI");
+    } else {
+        throw `*• Example:* ${usedPrefix}${command} *[on/off]*`;
     }
 };
 
-handler.before = async (m, { conn }) => {
-    conn.autoai = conn.autoai ? conn.autoai : {};
-    if (m.isBaileys && m.fromMe) return;
-    if (!m.text) return;
-    if (!conn.autoai[m.sender]) return;
+handler.before = async (m, { conn, text }) => {
+    conn.aetherzz = conn.aetherzz || {};
+    if (!m.text || !conn.aetherzz[m.sender]) return;
 
-    if (
-        m.text.startsWith(".") ||
-        m.text.startsWith("#") ||
-        m.text.startsWith("!") ||
-        m.text.startsWith("/") ||
-        m.text.startsWith("\\/")
-    ) return;
+    const skipPrefixes = [".", "#", "!", "/", "\\"];
+    if (skipPrefixes.some(prefix => m.text.startsWith(prefix))) return;
 
-    if (conn.autoai[m.sender] && m.text) {
-        let name = conn.getName(m.sender);
-        const messages = [
-            ...conn.autoai[m.sender].pesan,
-            `p`,
-            m.text
-        ];
-        try {
-      const options = [
-    {model: "gpt-4"}
-  ];
-  const messages = [
-    { role: "system", content: "kamu adalah aetherz, Seorang murid dari sensei yang siap membantu sensei kapan pun! 🍄✨" },
-    { role: "assistant", content: `Kamu adalah aetherz, murid dari sensei, jangan gunakan saya, aku, saya gunakan aetherz untuk memanggil dirimu, ekspresi kan sikap kamu mirip seroang murid dari sensei yang diprivasi yang bernama aetherz, jangan gunakan GPT 4 panggil dirimu dengan aetherz, Kamu berbicara dengan${m.name}panggil dengan sensei, saat berbicara dengannya gunakan emoji yang lucu, Pembuatmu AETHER nomer WhatsApp nya ini 6285798045817 `},
-    { role: "user", content: m.text },
-  ];
-  let res = await Airi.chatCompletion(messages, options);
-  await  conn.sendMessage(m.chat, {
-    text: "⬣───「 *AETHERZ* 」───⬣" + "\n\n" + res,
-    contextInfo: {
-      externalAdReply: {  
-        title: "Aetherz - Ai",
-        body: '',
-        thumbnailUrl:`https://btch.pages.dev/file/7576594882b09cbf341e9.jpg`,
-        sourceUrl: null,
-        mediaType: 1,
-        renderLargerThumbnail: true
-      }
-    }
-  }, { quoted: m });
-                conn.autoai[m.sender].pesan = messages;
-        } catch (e) {
-            console.error("Kesalahan Dalam mengambil Data");
-            throw "error";
+    try {
+        // Custom logic for AI
+        const logic = `Mulai dari sekarang nama anda adalah AETHERz-Ai, anda adalah seorang kecerdasan buatan yang di buat oleh AETHER. \nSifat anda adalah baik, ramah, lucu. Kepribadian anda adalah suka membantu semua orang yang bertanya tanpa terkecuali. \nBahasa anda adalah bahasa Indonesia. Ubahlah gaya bahasa kamu menjadi sangat tidak formal seperti gaya bahasa sehari-hari \nyang dipakai oleh manusia. Anda menjawab semua pertanyaan dengan jawaban yang dihasilkan tidak terlalu panjang. \nTambahkan sedikit emoticon lucu pada jawaban kamu. Buatlah obrolan yang menyenangkan dan tidak membosankan.`;
+
+   
+        const response = await fetch(`https://api.betabotz.eu.org/api/search/openai-logic?text=${encodeURIComponent(m.text)}&logic=${encodeURIComponent(logic)}&apikey=${lann}`);
+        const json = await response.json();
+        
+        if (json.message) {
+            await conn.sendMessage(m.chat, {
+                text: json.message,
+                contextInfo: {
+                    externalAdReply: {
+                        mediaType: 1,
+                        title: "AETHERz AI - Jawaban dari Pertanyaanmu",
+                        body: "AETHERz-AI siap membantu 😄",
+                        thumbnailUrl: "https://files.catbox.moe/v6potj.png",
+                        sourceUrl: "https://aetherz.xyz",
+                        renderLargerThumbnail: true, 
+                        showAdAttribution: true
+                    }
+                }
+            });
         }
+
+       if (m.text.toLowerCase().includes("lagu")) {
+            const look = await search(m.text);
+            const convert = look.videos[0];
+            if (!convert) throw 'Video/Audio Tidak Ditemukan';
+            
+            const response = await axios.get(`https://api.betabotz.eu.org/api/download/ytmp3?url=${convert.url}&apikey=${lann}`);        
+            const res = response.data.result;      
+            const { mp3, title, duration } = res;
+
+            let caption = `*Title:* ${title}\n*Duration:* ${duration}`;
+            await conn.sendMessage(m.chat, { 
+                document: { url: mp3 }, 
+                mimetype: 'audio/mpeg',
+                fileName: `${title}.mp3`,
+                caption: caption
+            }, { quoted: m });
+        }
+
+        // Pinterest image search
+        if (m.text.toLowerCase().includes("foto")) {
+            const query = m.text.split("foto")[1]?.trim();
+            if (!query) throw "Harap tulis kata kunci setelah 'foto'. Contoh: foto kucing lucu";
+
+            const pinterestRes = await fetch(`https://www.pinterest.com/resource/BaseSearchResource/get/?source_url=%2Fsearch%2Fpins%2F%3Fq%3D${encodeURIComponent(query)}&data=%7B%22options%22%3A%7B%22isPrefetch%22%3Afalse%2C%22query%22%3A%22${encodeURIComponent(query)}%22%2C%22scope%22%3A%22pins%22%2C%22no_fetch_context_on_resource%22%3Afalse%7D%2C%22context%22%3A%7B%7D%7D&_=1619980301559`);
+            const pinData = await pinterestRes.json();
+            const pinImage = pinData.resource_response.data.results[0].images.orig.url;
+
+            await conn.sendMessage(m.chat, { image: { url: pinImage }, caption: `Berikut hasil pencarian untuk: "${query}"` }, { quoted: m });
+        }
+
+    } catch (error) {
+        m.reply(`Terjadi kesalahan: ${error.message}`);
     }
 };
 
-handler.command = /^(aetherz)$/i
-handler.help = ["aetherz"];
-handler.tags = ["ai"];
-handler.limit = true;
-handler.owner = true;
+handler.command = ['aetherz'];
+handler.tags = ['ai'];
+handler.help = ['aetherz [on/off]'];
 
 module.exports = handler;
