@@ -11,7 +11,8 @@ const openTime = '04:00'; // buka grub
 const groupChats = [
     // Ganti dengan ID grup yang sesuai
     '120363298036479484@g.us',
-    '120363369124606444@g.us'  //  ID grup di sini bisa di ambil dari exac => m di grub kamu
+    '120363369124606444@g.us',
+    '120363374370080774@g.us',  //  ID grup di sini bisa di ambil dari exac => m di grub kamu
 ];
 
 // Variabel status grup dan nama asli grup
