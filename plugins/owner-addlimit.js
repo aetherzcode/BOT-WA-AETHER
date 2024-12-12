@@ -1,14 +1,3 @@
- /* 
-Script By Reelly XD
-  � YT: 
-  � IG: 
-Buy Script? 
-  � WA: +62 857-0436-85323
-  � TELE: t.me/rely_xd
-  � Github: github.com/ReellyXD
-*/
-
-
 const { MessageType } = require('@adiwajshing/baileys');
 
 let handler = async (m, { conn, text }) => {
