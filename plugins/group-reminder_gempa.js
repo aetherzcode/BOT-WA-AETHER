@@ -7,7 +7,7 @@ const groupChats = [
     '120363374370080774@g.us',
 ];
 
-let lastGempaData = null;
+let lastGempaData = null; 
 
 async function getGempaInfo() {
     try {
@@ -15,12 +15,18 @@ async function getGempaInfo() {
         const response = await axios.get(url);
         const res = response.data.result;
 
+        if (!res) {
+            console.log('Data gempa tidak tersedia');
+            return;
+        }
+
+
         if (lastGempaData && lastGempaData.Waktu === res.Waktu) {
             console.log('Data gempa belum berubah, tidak ada pengingat.');
             return;
         }
 
-        lastGempaData = res;
+        lastGempaData = res; 
 
         const gempaInfo = {
             waktu: res.Waktu,
@@ -36,9 +42,10 @@ async function getGempaInfo() {
         Waktu Gempa: ${gempaInfo.waktu}
         Magnitudo: ${gempaInfo.magnitude}
         Wilayah: ${gempaInfo.wilayah}
-        Gambar: ${gempaInfo.gambar}`);
+        Gambar: ${gempaInfo.gambar}
+        `);
 
-        sendGempaReminderToGroups(gempaInfo);
+        sendGempaReminderToGroups(gempaInfo); 
     } catch (error) {
         console.error('[❗] Terjadi kesalahan saat mengambil data gempa:', error);
     }
@@ -47,19 +54,20 @@ async function getGempaInfo() {
 async function sendGempaReminderToGroups(gempaInfo) {
     for (const chatId of groupChats) {
         const reminderMessage = `🚨 *PENGINGAT GEMPA BUMI* 🚨\n\n🕒 Waktu: ${gempaInfo.waktu}\n🌍 Wilayah: ${gempaInfo.wilayah}\n💥 Magnitudo: ${gempaInfo.magnitude}\n🌐 Lintang: ${gempaInfo.lintang}\n🌐 Bujur: ${gempaInfo.bujur}\n🔍 Kedalaman: ${gempaInfo.kedalaman}\n📷 Gambar Peta: ${gempaInfo.gambar}\n\nJaga keselamatan kalian!`;
-        await sendReminderToGroup(chatId, reminderMessage);
+        await sendReminderToGroup(chatId, reminderMessage); 
     }
 }
 
 async function sendReminderToGroup(chatId, text) {
-    await conn.sendMessage(chatId, { text }); // Mengirim pesan langsung tanpa hide tag
+    await conn.sendMessage(chatId, { text }); 
 }
+
 
 function startGempaReminder() {
     setInterval(() => {
         console.log('Mengecek data gempa terbaru...');
-        getGempaInfo();
-    }, 5 * 60 * 1000); 
+        getGempaInfo(); 
+    }, 60 * 60 * 1000); 
 }
 
-startGempaReminder();
+startGempaReminder(); 
