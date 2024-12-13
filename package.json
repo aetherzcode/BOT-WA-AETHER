@@ -44,6 +44,7 @@
         "@adiwajshing/keyed-db": "^0.2.4",
         "@bochilteam/scraper": "^3.0.0",
         "@vitalets/google-translate-api": "^9.0.0",
+        "@whiskeysockets/baileys": "^6.7.9",
         "async": "^3.2.4",
         "awesome-phonenumber": "^2.64.0",
         "axios": "^0.27.2",
@@ -97,7 +98,6 @@
         "wa-sticker-formatter": "^4.3.2",
         "yargs": "^17.5.1",
         "yt-search": "^2.12.1",
-        "https": "^1.0.0",
         "ytdl-core": "npm:@distube/ytdl-core@^4.13.3"
     }
 }
