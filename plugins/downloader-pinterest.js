@@ -1,27 +1,34 @@
-let fetch = require('node-fetch');
-let handler = async (m, { usedPrefix, command, conn, args }) => {
-  if (!args[0]) throw `*🚩 Example:* ${usedPrefix}${command} Zhao Lusi`;
-  m.reply(wait)
-  try {
-    let response = await fetch(`https://api.betabotz.eu.org/api/search/pinterest?text1=${args[0]}&apikey=${lann}`);
-    let data = await response.json();   
-    let old = new Date()
-    let limit = Math.min(5, data.result.length);
-    for(let i = 1; i < limit; i++) { 
-      await sleep(3000);
-      conn.sendFile(m.chat, data.result[i], 'pin.jpg', `🍟 *Fetching* : ${((new Date - old) * 1)} ms`, m);
-    }
-  } catch (e) {
-    throw `${eror}`;
-  }
-}
+const fetch = require('node-fetch');
 
-handler.help = ['pinterest <keyword>'];
-handler.tags = ['internet', 'downloader'];
-handler.command = /^(pinterest)$/i;
+let handler = async (m, { args }) => {
+  if (!args.length) {
+    return m.reply('Harap masukkan kata kunci pencarian!\nContoh: .pinterest kucing lucu');
+  }
+
+  const query = args.join(' ');
+
+  try {
+    const pinterestRes = await fetch(https://api.betabotz.eu.org/api/search/pinterest?text1=${encodeURIComponent(query)}&apikey=${lann});
+    const data = await pinterestRes.json();
+
+    if (!data.result || !data.result.length) {
+      throw new Error("Tidak ada hasil ditemukan.");
+    }
+
+    let limit = Math.min(5, data.result.length);
+    for (let i = 0; i < limit; i++) {
+      await conn.sendMessage(m.chat, {
+        image: { url: data.result[i] },
+        caption: Berikut hasil pencarian untuk: "${query}"
+      }, { quoted: m });
+    }
+  } catch (error) {
+    m.reply(Terjadi kesalahan: ${error.message});
+  }
+};
+
+handler.help = ['pinterest <kata kunci>'];
+handler.tags = ['downloader'];
+handler.command = /^(pinterest|pin)$/i;
 
 module.exports = handler;
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
