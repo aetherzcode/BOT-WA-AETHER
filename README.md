@@ -6,6 +6,34 @@
 - Penggunaan pairing ```node . --pairing```
 - Fitur 90% implementasi dari website api
 - Penambah output url expres.js agar bisa di jalankan di render dsb.
+  ## Note!
+  **Important :**
+  
+- Untuk menggunakan bot ini, kamu diwajibkan mengisi ApiKey terlebih dahulu. Jika tidak mengisinya, bot tidak akan berfungsi dengan baik.
+- Tidak disarankan menginstal bot ini di termux atau panel yang tidak mempunyai kelengkapan express, ffmpeg, imagemagick, webp.
+  
+- Menggunakan 60% fitur dari [`RestApi`](https://api.betabotz.eu.org) sebagai media downloader
+
+
+## ApiKey Harga
+
+| No | Plan/Role    | Limit          | Expired         | Harga |
+|----|--------------|----------------|-----------------|-------|
+| 1  | Free         | 30 Request/day| -               | Gratis|
+| 2  | Cheap1       | 3000 Request   | 1 bulan         | 5000     |
+| 3  | Cheap2       | 4000 Request   | 1 bulan         | 6000     |
+| 4  | PREMIUM      | 5000 Request   | 1 bulan         | 7000     |
+| 5  | VIP          | 10000 Request  | 2 bulan         | 12000     |
+| 6  | VVIP         | 15000 Request  | 2 bulan         | 17000     |
+| 7  | SUPREME      | 30000 Request  | 3 bulan         | 32000     |
+
+- Jika ingin membeli ApiKey Cheap1, Cheap2, Premium, Vip, Vvip, Supreme silahkan register lalu pilih paket yang diinginkan dan tekan button order via qris [`Pilih`](https://api.betabotz.eu.org/price)
+
+**Website Api :**
+- BOTCAHX (Optional)[`Register`](https://api.botcahx.eu.org)
+- Lann (Wajib) [`Register`](https://api.betabotz.eu.org)
+- Setelah mendapatkan apikey silahkan paste di config.js pada bagian ```global.btc``` dan ```global.lann```
+
 
 ### `Render`
 
