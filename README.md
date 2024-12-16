@@ -34,6 +34,9 @@
 - Lann (Wajib) [`Register`](https://api.betabotz.eu.org)
 - Setelah mendapatkan apikey silahkan paste di config.js pada bagian ```global.btc``` dan ```global.lann```
 
+## Support
+
+<a href="https://saweria.co/aetherscode" target="_blank"><img src="https://files.catbox.moe/i2ro3b.png" height="32px" alt="SAWERIA"></a>
 
 ### `Render`
 
