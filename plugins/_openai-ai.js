@@ -18,6 +18,5 @@ try {
 handler.command = handler.help = ['ai','openai','chatgpt'];
 handler.tags = ['tools'];
 handler.register = true
-handler.limit = true
 handler.premium = false
 module.exports = handler;
