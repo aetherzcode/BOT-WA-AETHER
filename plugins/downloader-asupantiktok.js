@@ -42,5 +42,6 @@ handler.help = ['asupantiktok'].map(v => v + ' <username>');
 handler.tags = ['downloader'];
 handler.command = /^(asupantiktok)$/i;
 handler.limit = true;
+handler.register = true;
 
 module.exports = handler;
