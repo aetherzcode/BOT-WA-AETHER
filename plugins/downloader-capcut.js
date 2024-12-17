@@ -37,5 +37,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 handler.help = handler.command = ['capcut','cc','capcutdl','ccdl'];
 handler.tags = ['downloader'];
 handler.limit = true;
+handler.register = true;
 handler.group = false;
 module.exports = handler;
