@@ -88,5 +88,6 @@ handler.before = async (m, { conn, text }) => {
 handler.command = ['aetherz'];
 handler.tags = ['ai'];
 handler.help = ['aetherz [on/off]'];
+handler.register = true;
 
 module.exports = handler;
