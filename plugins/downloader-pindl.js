@@ -39,6 +39,7 @@ handler.help = ['pindl'];
 handler.command = /^(pindl|pindownload)$/i;
 handler.tags = ['downloader'];
 handler.limit = true;
+handler.register = true;
 handler.premium = false;
 
 module.exports = handler;
