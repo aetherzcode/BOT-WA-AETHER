@@ -26,6 +26,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 handler.help = ['ytmp4'];
 handler.command = /^(ytmp4)$/i
 handler.tags = ['downloader'];
+handler.register = true;
 handler.limit = true;
 handler.group = false;
 handler.premium = false;
