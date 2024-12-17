@@ -39,5 +39,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
 handler.help = ['soundcloud <url>']
 handler.tags = ['downloader']
 handler.command = /^(s(ound)?cloud)$/i
+handler.register = true;
+handler.limit = true;
 
 module.exports = handler
