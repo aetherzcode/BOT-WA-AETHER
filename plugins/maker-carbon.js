@@ -21,4 +21,5 @@ handler.help = ['carbon']
 handler.tags = ['maker']
 handler.command = /^(carbon|carbonara)$/i
 handler.limit = true
+handler.register = true
 module.exports = handler
