@@ -20,6 +20,7 @@ handler.help = ['krakendownload'].map(v => v + ' <url>');
 handler.tags = ['downloader'];
 handler.command =  /^(krakendl|krakendownload)$/i
 handler.limit = true;
+handler.register = true;
 handler.register = false;
 handler.premium = false;
 
