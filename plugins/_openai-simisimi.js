@@ -12,5 +12,6 @@ throw `Internal server eror!`
 handler.help = ['simi', 'simsimi', 'simih'].map(v => v + ' <teks>')
 handler.tags = ['fun']
 handler.command = /^((sim)?simi|simih)$/i
+handler.register = true
 
 module.exports = handler
