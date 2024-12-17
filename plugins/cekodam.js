@@ -101,6 +101,7 @@ async function handler(m, { conn, text }) {
 handler.menu = ["khodamnya"];
 handler.tags = ["fun"];
 handler.command = /^kodamnya|khodamnya/i;
+handler.register = true;
 
 module.exports = handler;
 
