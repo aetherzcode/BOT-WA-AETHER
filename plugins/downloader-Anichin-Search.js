@@ -42,6 +42,7 @@ handler.help = ['anichin'].map(v => v + ' <judul>');
 handler.tags = ['internet'];
 handler.command = /^(anichin|v)$/i;
 handler.limit = true;
+handler.register = true;
 handler.group = true;
 
 module.exports = handler;
