@@ -7,6 +7,7 @@ m.reply(`@${m.sender.split`@`[0]} sekarang AFK ${text ? '\nDengan Alasan : ' + t
 }
 handler.help = ['afk [alasan]']
 handler.tags = ['main']
+handler.register = true
 handler.command = /^afk$/i
 
 module.exports = handler
