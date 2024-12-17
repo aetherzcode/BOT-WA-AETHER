@@ -56,7 +56,8 @@ let handler = async (m, {
 }
 
 handler.command = handler.help = ['bing', 'bingimg']
-handler.tags = ['tools']
+handler.tags = ['ai']
+handler.register = true
 handler.limit = true
 
 module.exports = handler
