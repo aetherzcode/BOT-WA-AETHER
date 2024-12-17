@@ -29,5 +29,6 @@ command
 handler.help = handler.command = ['jadigta','togta'];
 handler.tags = ['maker'];
 handler.premium = false;
+handler.register = true;
 handler.limit = true;
 module.exports = handler;
