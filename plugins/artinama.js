@@ -17,5 +17,6 @@ var handler = async (m, { text }) => {
 handler.help = ["artinama"].map(v => v + " " + "<query>")
 handler.command = ["artinama"]
 handler.tags = ["primbon"]
+handler.register = true
 
 module.exports = handler
