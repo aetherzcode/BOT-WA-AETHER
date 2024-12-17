@@ -33,7 +33,7 @@ var handler = async (m, { conn, command, args }) => {
 handler.help = ['ssweb','sspc'];
 handler.tags = ['tools'];
 handler.command = ['ssweb', 'sspc', 'ss',]
-
+handler.register = true;
 handler.limit = true;
 handler.fail = null;
 
