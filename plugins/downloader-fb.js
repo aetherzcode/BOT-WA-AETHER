@@ -18,6 +18,7 @@ handler.help = ['facebook'];
 handler.command = /^(fb|facebook|facebookdl|fbdl|fbdown|dlfb)$/i;
 handler.tags = ['downloader'];
 handler.limit = true;
+handler.register = true;
 handler.group = true;
 handler.premium = false;
 handler.owner = false;
