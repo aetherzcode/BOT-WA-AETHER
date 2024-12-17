@@ -33,6 +33,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 };
 handler.command = handler.help = ['threads', 'threadsdl'];
 handler.tags = ['downloader'];
+handler.register = true;
 handler.limit = true;
 handler.group = false;
 handler.premium = false;
