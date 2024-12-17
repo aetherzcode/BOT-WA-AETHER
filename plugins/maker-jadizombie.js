@@ -29,6 +29,7 @@ command
 handler.help = ['jadizombie'];
 handler.command = ['jadizombie'];
 handler.tags = ['maker'];
+handler.register = true;
 handler.premium = false;
 handler.limit = 5;
 module.exports = handler;
