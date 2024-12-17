@@ -16,4 +16,5 @@ handler.command = ["vei"];
 handler.tags = ["ai"];
 handler.help = ["vei *<text>*"];
 handler.limit = true;
+handler.register = true;
 module.exports = handler;
