@@ -54,4 +54,5 @@ async function detail(url) {
 
 handler.help = handler.command = ['anilist'];
 handler.tags = ['anime'];
+handler.register = true;
 module.exports = handler;
