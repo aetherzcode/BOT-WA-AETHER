@@ -26,6 +26,7 @@ handler.help = ['asupan']
 handler.tags = ['downloader']
 handler.command = /^asupan$/i
 handler.owner = false
+handler.register = true
 handler.premium = false
 handler.group = false
 handler.private = false
