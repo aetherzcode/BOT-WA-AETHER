@@ -70,6 +70,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 handler.help = ["ytshorts"].map((v) => v + ' url');
 handler.tags = ["downloader"];
 handler.command = /^(ytshorts|shorts|short)$/i;
-handler.register = false;
+handler.register = true;
+handler.limit = true;
 
 module.exports = handler;
