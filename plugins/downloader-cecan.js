@@ -16,4 +16,5 @@ let handler = async (m, { conn, command }) => {
 handler.command = ['china','vietnam','thailand','indonesia','korea','japan','malaysia','justinaxie','jeni','jiso','ryujin','rose','hijaber']
 handler.tags = ['downloader'];
 handler.limit = true;
+handler.register = true;
 module.exports = handler;
