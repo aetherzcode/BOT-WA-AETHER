@@ -66,5 +66,6 @@ handler.before = async (m, { conn }) => {
 handler.command = ['autoai'];
 handler.tags = ["ai"];
 handler.help = ['autoai'].map(a => a + " *[on/off]*");
+handler.register = true;
 
 module.exports = handler;
