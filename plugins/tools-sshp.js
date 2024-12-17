@@ -42,7 +42,7 @@ var handler = async (m, { conn, command, args }) => {
 handler.help = ['sshp', 'sshandphone', 'sstablet'];
 handler.tags = ['tools'];
 handler.command = ['sshp', 'sshandphone', 'sstablet',]
-
+handler.register = true;
 handler.limit = true;
 handler.fail = null;
 
