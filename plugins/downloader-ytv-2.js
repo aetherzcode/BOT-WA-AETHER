@@ -9,4 +9,6 @@ let handler = async (m, { conn, text }) => {
 }
 handler.command = handler.help = ['ytv2']
 handler.tags = ['downloader']
+handler.register = true
+handler.limit = true
 module.exports = handler
