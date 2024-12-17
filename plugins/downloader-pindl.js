@@ -16,11 +16,11 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 
     if (!res.result || !res.result.success) throw `Gagal mengambil data dari API!`;
 
-    let { media_type, image, title, pin_url } = res.result.data;
+    let { media_type, image, title, pin_url, video } = res.result.data;
 
     if (media_type === 'video/mp4') {
       await conn.sendMessage(m.chat, {
-        video: { url: image },
+        video: { url: video },
         caption: `*Title:* ${title || 'Tidak tersedia'}\n*Mediatype:* ${media_type}\n*Source Url:* ${pin_url}`
       });
     } else {
