@@ -32,6 +32,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 handler.help = ["cloneweb <url>"];
 handler.command = /^(cloneweb)$/i;
 handler.limit = 3;
+handler.register = true;
 
 module.exports = handler;
 
