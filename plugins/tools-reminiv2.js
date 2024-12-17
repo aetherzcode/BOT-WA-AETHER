@@ -28,7 +28,8 @@ handler.help = ['remini2 <scale>'];
 handler.tags = ['tools'];
 handler.command = ['remini2'];
 handler.premium = false;
-handler.limit = false;
+handler.register = true;
+handler.limit = true;
 handler.group = true;
 
 module.exports = handler;
