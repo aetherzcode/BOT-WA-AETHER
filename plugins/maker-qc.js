@@ -52,4 +52,5 @@ handler.help = ['qc']
 handler.tags = ['sticker']
 handler.command = /^(qc|quotely)$/i
 handler.register = true
+handler.limit = true
 module.exports = handler
