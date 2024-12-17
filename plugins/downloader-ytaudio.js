@@ -10,6 +10,7 @@ let handler = async (m, {conn, text, usedPrefix}) => {
 handler.command = handler.help = ['ytaudio'];
 handler.tags = ['downloader'];
 handler.exp = 0;
+handler.register = true;
 handler.limit = true;
 handler.premium = false;
 module.exports = handler;
