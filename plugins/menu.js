@@ -240,6 +240,7 @@ handler.help = ['menu']
 handler.tags = ['main']
 handler.command = /^(menu|help|bot)$/i
 handler.exp = 3
+handler.register = true
 
 module.exports = handler
 
