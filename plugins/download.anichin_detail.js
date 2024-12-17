@@ -33,5 +33,6 @@ handler.tags = ['internet'];
 handler.premium = false;
 handler.group = false;
 handler.limit = true;
+handler.register = true;
 
 module.exports = handler;
