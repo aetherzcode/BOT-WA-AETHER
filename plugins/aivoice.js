@@ -2,7 +2,7 @@ const axios = require('axios');
 const fetch = require('node-fetch');
 
 const handler = async (m, { conn, usedPrefix, text, args, command }) => {
-    if (!text) return conn.reply(m.chat, 'Hai, saya AI voice. Tanyakan apa saja, saya akan menjawabnya.', m);
+    if (!text) return conn.reply(m.chat, 'Hai, saya AETHERz AI voice. Tanyakan apa saja, saya akan menjawabnya.', m);
     
     const formData = new URLSearchParams();
     formData.append("locale", "id-ID");
