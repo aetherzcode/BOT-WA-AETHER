@@ -76,7 +76,7 @@ let handler = async (m, { conn, text, usedPrefix }) => {
 
 handler.command = handler.help = ['playvid'];
 handler.tags = ['downloader'];
-
+handler.register = true;
 handler.limit = true;
 handler.premium = false;
 
