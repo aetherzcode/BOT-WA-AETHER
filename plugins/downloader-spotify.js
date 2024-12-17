@@ -49,6 +49,7 @@ type
 handler.help = ['spotify']
 handler.command = /^(spotify)$/i
 handler.tags = ['downloader'];
+handler.register = true;
 handler.limit = true;
 handler.group = false;
 handler.premium = false;
