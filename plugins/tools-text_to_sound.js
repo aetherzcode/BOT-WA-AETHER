@@ -110,6 +110,7 @@ handler.command = handler.help = ['texttorusia', 'texttoindo', 'texttoeng', 'tex
 // handler.command = /^(texttorusia)$/i
 handler.tags = ['tools'];
 handler.limit = true;
+handler.register = true;
 handler.group = true;
 handler.fail = null;
 handler.private = false;
