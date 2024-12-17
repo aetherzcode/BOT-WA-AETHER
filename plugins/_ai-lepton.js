@@ -17,5 +17,6 @@ try {
 handler.command = handler.help = ['lepton'];
 handler.tags = ['ai'];
 handler.premium = false
-handler.limit = true;
+handler.register = true
+handler.limit = true
 module.exports = handler;
