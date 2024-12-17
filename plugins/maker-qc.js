@@ -51,5 +51,5 @@ const apiColor = randomColor[Math.floor(Math.random() * randomColor.length)];
 handler.help = ['qc']
 handler.tags = ['sticker']
 handler.command = /^(qc|quotely)$/i
-
+handler.register = true
 module.exports = handler
