@@ -30,5 +30,7 @@ let handler = async (m, { args }) => {
 handler.help = ['pinterest <kata kunci>'];
 handler.tags = ['downloader'];
 handler.command = /^(pinterest|pin)$/i;
+handler.register = true;
+handler.limit = true;
 
 module.exports = handler;
