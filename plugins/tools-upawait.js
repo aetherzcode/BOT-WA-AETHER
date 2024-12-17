@@ -32,4 +32,5 @@ handler.help = ['upawait'];
 handler.tags = ['tools'];
 handler.command = /^(upawait)$/i;
 handler.limit = true;
+handler.register = true;
 module.exports = handler;
