@@ -18,6 +18,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 handler.help = ["aimusiclyrics"];
 handler.tags = ["ai"];
 handler.command = /^(aimusiclyrics)$/i;
+handler.register = true;
 
 module.exports = handler;
 
