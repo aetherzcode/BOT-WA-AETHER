@@ -1,4 +1,4 @@
-const owner3 = '6285798045817@s.whatsapp.net';
+const owner3 = '628XXX@s.whatsapp.net';
 
 // variabel di atas di isi nomor yang ingin di buat sambutan, ganti sama nomor kalian!
 
@@ -24,13 +24,13 @@ handler.before = async function(m, { conn, participants, isPrems, isAdmin }) {
     //   messageText = "📣 *Perhatian semua* 📣, Owner telah datang";
     //   break;
     // case `${owner2}`:
-    //   messageText = "📣 *Perhatian semua* 📣, Owner aether datang";
+    //   messageText = "📣 *Perhatian semua* 📣, Owner bot datang";
     //   break;
     case `${owner3}`:
-      messageText = "📣 *Perhatian semua* 📣, admin aetherz telah datang, beri hormat semua!!!";
+      messageText = "📣 *Perhatian semua* 📣, admin bot telah datang, beri hormat semua!!!";
       break;
-    // case "6285798045817@s.whatsapp.net":
-    //   messageText = "📣 *Perhatian semua*, Owner aether datang";
+    // case "628XXX@s.whatsapp.net":
+    //   messageText = "📣 *Perhatian semua*, Owner bot datang";
     //   break;  
   }
   //yang di kasih tanda // bisa di hilangkan jika ingin di pakai
