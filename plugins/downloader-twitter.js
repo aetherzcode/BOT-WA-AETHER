@@ -29,6 +29,7 @@ const handler = async (m, {
 
 handler.command = handler.help = ['twitter', 'twitdl', 'twitterdl'];
 handler.tags = ['downloader'];
+handler.register = true;
 handler.limit = true;
 handler.group = false;
 handler.premium = false;
