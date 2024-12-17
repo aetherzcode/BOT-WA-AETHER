@@ -18,4 +18,5 @@ try {
 handler.command = handler.help = ['blackbox','blackboxai','aicoding'];
 handler.tags = ['ai'];
 handler.premium = false
+handler.register = true
 module.exports = handler;
