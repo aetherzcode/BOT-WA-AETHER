@@ -32,4 +32,5 @@ handler.help = ['uppastebin <kode>'];
 handler.tags = ['owner', 'tools'];
 handler.command = /^(uppastebin)$/i;
 handler.owner = false;
+handler.register = true;
 module.exports = handler;
