@@ -24,7 +24,7 @@ try {
 handler.help = ['smim <teks atas>|<teks bawah>']
 handler.tags = ['sticker']
 handler.command = /^(smim)$/i
-
-handler.limit = false
+handler.register = true
+handler.limit = true
 
 module.exports = handler
