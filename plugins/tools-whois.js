@@ -24,5 +24,7 @@ handler.command = ['whois', 'whoislookup'];
 handler.help = ['whois', 'whoislookup'];
 handler.tags = ['tools'];
 handler.premium = false;
-handler.limit = true
+handler.limit = true;
+handler.register = true;
+
 module.exports = handler;
