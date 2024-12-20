@@ -28,6 +28,7 @@ handler.help = ['ringtone']
 handler.tags = ['internet']
 handler.command = /^(ringtone)$/i
 handler.group = false
+handler.register = true
 handler.limit = true
     
 module.exports = handler
