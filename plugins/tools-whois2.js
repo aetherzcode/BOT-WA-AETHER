@@ -1,10 +1,10 @@
 const fetch = require('node-fetch');
 const handler = async (m, { text, usedPrefix, command }) => {
   if (!text) {
-    throw `Masukkan Domain/Sub Domain!\n\n*Contoh:* botcahx.eu.org`;
+    throw `Masukkan Domain/Sub Domain!\n\n*Contoh:* aetherz.xyz`;
   }
   if (text.includes('https://') || text.includes('http://')) {
-    throw `Tolong masukkan domain/sub domain secara lengkap. Contoh: aetherscode.xyz`;
+    throw `Tolong masukkan domain/sub domain secara lengkap. Contoh: aetherz.xyz`;
   }
   const options = {
     method: 'GET',
@@ -23,4 +23,6 @@ const handler = async (m, { text, usedPrefix, command }) => {
 handler.command = ['whois2'];
 handler.tags = ['internet'];
 handler.premium = false;
+handler.register = true;
+handler.limit = true;
 module.exports = handler;
