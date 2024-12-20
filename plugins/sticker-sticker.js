@@ -33,6 +33,6 @@ handler.help = ['sticker']
 handler.tags = ['sticker']
 handler.command = /^(stiker|s|sticker)$/i
 handler.register = true
-handler.limit = true
+handler.limit = false
 
 module.exports = handler
