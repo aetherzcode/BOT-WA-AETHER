@@ -13,5 +13,7 @@ let handler = async (m, { text }) => {
 handler.help = ['npmsearch']
 handler.tags = ['tools']
 handler.command = /^npm(js|search)?$/i
-//maapin hyzer
+handler.register = true
+handler.limit = true
+
 module.exports = handler
