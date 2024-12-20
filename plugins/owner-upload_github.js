@@ -1,73 +1,62 @@
-let handler = async(m, { conn, text, usedPrefix, command }) => {
+let handler = async (m, { conn, text, usedPrefix, command }) => {
     const axios = require('axios');
-    const fs = require('fs');
 
-    const githubToken = '-'; // Token GitHub
+    const githubToken = 'YOUR_GITHUB_TOKEN'; // Token GitHub
     const owner = 'aetherzcode'; // Username GitHub
     const repo = 'BOT-WA-AETHER'; // Repository
-    const branch = 'main'; // Branch tempat file di-upload
+    const branch = 'main'; // Branch tempat file diunggah
 
-    const fileExists = async(owner, repo, filePath, branch) => {
+    const getFileSha = async (owner, repo, filePath, branch) => {
         try {
-            await axios.get(`https://api.github.com/repos/${owner}/${repo}/contents/${filePath}?ref=${branch}`, {
-                headers: {
-                    Authorization: `Bearer ${githubToken}`,
-                },
-            });
-            return true;
+            const response = await axios.get(
+                `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}?ref=${branch}`, {
+                    headers: {
+                        Authorization: `Bearer ${githubToken}`,
+                    },
+                }
+            );
+            return response.data.sha;
         } catch (error) {
             if (error.response && error.response.status === 404) {
-                return false;
+                return null; // File tidak ditemukan
             }
-            throw error;
+            throw error; // Error lain
         }
-    };
-
-    const getFileSha = async(owner, repo, filePath, branch) => {
-        const response = await axios.get(
-            `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}?ref=${branch}`, {
-                headers: {
-                    Authorization: `Bearer ${githubToken}`,
-                },
-            }
-        );
-        return response.data.sha;
     };
 
     try {
-        // Periksa apakah ada media
-        let q = m.quoted ? m.quoted : m;
-        let mime = (q.msg || q).mimetype || '';
-
-        if (!mime) {
-            throw 'Media tidak ditemukan!';
+        // Periksa apakah ada reply pada pesan
+        if (!m.quoted || !m.quoted.text) {
+            throw `Harap reply pesan yang berisi kode!\nContoh:\nReply pesan, lalu gunakan perintah: ${usedPrefix}${command} nama_file.js`;
         }
 
         // Ambil nama file dari input pengguna
-        let customFileName = text.trim() || `${Date.now()}.${mime.split('/')[1]}`; // Gunakan nama file yang diberikan atau default
+        if (!text) throw `Harap masukkan nama file!\nContoh: ${usedPrefix}${command} plugins/nama_file.js`;
 
-        // Tampilkan reaksi atau pesan proses
-        if (typeof m.react === 'function') {
-            m.react('⌛');
-        } else {
-            m.reply('⌛ Sedang memproses, harap tunggu...');
-        }
+        const filePath = text.trim(); // Nama file yang akan diunggah
+        const fileContent = m.quoted.text; // Konten file dari pesan yang direply
 
-        // Unduh media
-        let media = await q.download();
-        let filePath = `plugins/${customFileName}`; // Gunakan nama file yang diberikan
-        let base64Content = Buffer.from(media).toString('base64');
+        console.log('Path file yang akan diupload atau diupdate:', filePath);
+        console.log('Konten file:\n', fileContent);
+
+        // Encode konten file ke base64
+        const base64Content = Buffer.from(fileContent).toString('base64');
 
         // Periksa apakah file sudah ada
-        if (await fileExists(owner, repo, filePath, branch)) {
-            const sha = await getFileSha(owner, repo, filePath, branch);
+        const fileSha = await getFileSha(owner, repo, filePath, branch);
+
+        if (fileSha) {
+            // Update file jika sudah ada
+            console.log('File ditemukan, akan diupdate...');
             await axios.put(
-                `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, {
-                    message: `Overwrite file ${customFileName}`,
+                `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`,
+                {
+                    message: `Update file ${filePath}`,
                     content: base64Content,
                     branch: branch,
-                    sha: sha,
-                }, {
+                    sha: fileSha, // SHA file untuk update
+                },
+                {
                     headers: {
                         Authorization: `Bearer ${githubToken}`,
                         'Content-Type': 'application/json',
@@ -76,13 +65,16 @@ let handler = async(m, { conn, text, usedPrefix, command }) => {
             );
             m.reply(`File berhasil diupdate di GitHub!\nPath: ${filePath}`);
         } else {
-            // Upload file baru
+            // Upload file baru jika belum ada
+            console.log('File tidak ditemukan, akan diupload...');
             await axios.put(
-                `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`, {
-                    message: `Upload file ${customFileName}`,
+                `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`,
+                {
+                    message: `Upload file ${filePath}`,
                     content: base64Content,
                     branch: branch,
-                }, {
+                },
+                {
                     headers: {
                         Authorization: `Bearer ${githubToken}`,
                         'Content-Type': 'application/json',
@@ -97,9 +89,9 @@ let handler = async(m, { conn, text, usedPrefix, command }) => {
     }
 };
 
-handler.help = ['uploadtogithub'];
+handler.help = ['uploadupdategithub'];
 handler.tags = ['owner', 'tools'];
-handler.command = /^(upgh|uploadgithub)$/i;
+handler.command = /^(upgh|upcodegh|uploadupdategithub)$/i;
 handler.limit = true;
 handler.rowner = true;
 
