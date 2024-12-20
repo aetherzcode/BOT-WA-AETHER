@@ -29,6 +29,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
 handler.help = ['ytstalk <username>']
 handler.tags = ['stalk']
 handler.command = /^(ytstalk)$/i
+handler.register = true
 handler.limit = true
 
 module.exports = handler
