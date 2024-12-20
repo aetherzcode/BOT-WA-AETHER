@@ -1,9 +1,10 @@
 let handler = async(m, { conn, text, usedPrefix, command }) => {
+    const config = require('./config.js');
     const axios = require('axios');
 
-    const githubToken = '-'; // Token GitHub
-    const owner = 'aetherzcode'; // Username GitHub
-    const repo = 'BOT-WA-AETHER'; // Repository
+    const owner = config.ownerrepo;
+    const repo = config.repo;
+    const githubToken = config.githubToken;
     const branch = 'main'; // Branch tempat file dihapus
 
     const getFileSha = async(owner, repo, filePath, branch) => {
