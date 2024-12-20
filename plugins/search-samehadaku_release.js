@@ -180,6 +180,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
 handler.help = ['samehadarilis']
 handler.tags = ['internet']
 handler.command = /^(samehadarilis)$/i
+handler.register = true
 handler.limit = true
 handler.group = true
 
