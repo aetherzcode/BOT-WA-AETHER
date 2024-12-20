@@ -17,7 +17,6 @@ global.packname = 'Made With'
 global.author = 'Bot WhatsApp'
 global.maxwarn = '2' // Peringatan maksimum
 global.antiporn = true // Auto delete pesan porno (bot harus admin)
-global.tokengithub = 'YOUR_GITHUB_TOKEN'
 
 //INI WAJIB DI ISI!//
 global.lann = 'YOUR_APIKEY_HERE' 
