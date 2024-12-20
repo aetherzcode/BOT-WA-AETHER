@@ -1,15 +1,4 @@
-/*
-   Created By Dana
-   Source From: https://github.com/DanaPutra133/Aquabot-V3/blob/main/aqua%20bot/plugins/search-cerpen.js
-   Github: https://github.com/DanaPutra133/Aquabot-V3/
-   Created At: 13 June 2024
-   Dont Delete This Watermark and Sell This Code !!!!
-*/
-
 const fetch = require('node-fetch')
-
-//mulai
-
 let handler = async (m, {conn, command}) => {
 
     let anu = `----(*${command}*)----\n\n`;
@@ -111,6 +100,7 @@ let handler = async (m, {conn, command}) => {
 handler.help = handler.command = ['remaja', 'anak', 'budaya', 'misteri', 'romantis', 'cinta', 'gokil', 'galau', 'Kehidupan', 'inspiratif', 'sastra', 'cerjapan', 'cerkorea', 'keluarga', 'persahabatan', 'kristen', 'ramadhan', 'liburan', 'lingkungan', 'mengharukan'];
 handler.tags = ['cerpen']
 handler.group = false;
+handler.register = true;
 handler.limit = true;
 module.exports = handler;
 
