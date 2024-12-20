@@ -30,6 +30,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
 handler.help = ['twitterstalk <username>']
 handler.tags = ['stalk']
 handler.command = /^(twstalk|twitterstalk)$/i
+handler.register = true
 handler.limit = true
 
 module.exports = handler
