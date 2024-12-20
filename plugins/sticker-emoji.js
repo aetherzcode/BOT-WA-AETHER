@@ -103,5 +103,7 @@ let handler = async (m, { conn, command, text, usedPrefix }) => {
 
 handler.command = handler.help = ['stikapple', 'stikkddi', 'stikgoogle', 'stikdocomo', 'stiksoftbank', 'stikhtc', 'stikmozilla', 'stiklg', 'stikopenmoji', 'stikemojipedia', 'stikjoypixels', 'stikopenmoji', 'stikfacebook', 'stikskype', 'stikwhatsapp', 'stiktwitter', 'stiksamsung', 'stikmicrosoft']
 handler.tags = ['sticker'] 
+handler.register = true
 handler.limit = true
+
 module.exports = handler
