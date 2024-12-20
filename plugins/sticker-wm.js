@@ -17,6 +17,8 @@ conn.sendImageAsSticker(m.chat , img, m, {packname: text, author: ''})
 handler.help = ['wm', 'watermark']
 handler.tags = ['sticker']
 handler.command = /^wm|watermark?$/i
+handler.register = true
+handler.limit = true
 
 module.exports = handler
 
