@@ -56,7 +56,8 @@ let handler = async (m, { conn, args, participants }) => {
   handler.premium = false
   handler.group = true
   handler.private = false
-  
+  handler.register = true
+
   handler.admin = false
   handler.botAdmin = false
   
