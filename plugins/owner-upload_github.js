@@ -1,10 +1,11 @@
 let handler = async (m, { conn, text, usedPrefix, command }) => {
+    const config = require('./config.js');
     const axios = require('axios');
 
-    const githubToken = 'YOUR_GITHUB_TOKEN'; // Token GitHub
-    const owner = 'aetherzcode'; // Username GitHub
-    const repo = 'BOT-WA-AETHER'; // Repository
-    const branch = 'main'; // Branch tempat file diunggah
+    const owner = config.ownerrepo;
+    const repo = config.repo;
+    const githubToken = config.githubToken;
+    const branch = 'main';
 
     const getFileSha = async (owner, repo, filePath, branch) => {
         try {
@@ -25,12 +26,12 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
     };
 
     try {
-        // Periksa apakah ada reply pada pesan
+        // buat periksa ada reply pesan ngga
         if (!m.quoted || !m.quoted.text) {
             throw `Harap reply pesan yang berisi kode!\nContoh:\nReply pesan, lalu gunakan perintah: ${usedPrefix}${command} nama_file.js`;
         }
 
-        // Ambil nama file dari input pengguna
+        // Ambil nama file dari input
         if (!text) throw `Harap masukkan nama file!\nContoh: ${usedPrefix}${command} plugins/nama_file.js`;
 
         const filePath = text.trim(); // Nama file yang akan diunggah
