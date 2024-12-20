@@ -27,6 +27,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
 handler.help = ['igstalk <username>']
 handler.tags = ['stalk']
 handler.command = /^(igstalk)$/i
+handler.register = true
 handler.limit = true
 
 module.exports = handler
