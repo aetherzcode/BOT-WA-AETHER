@@ -91,7 +91,7 @@ handler.help = ['profile [@user]']
 handler.tags = ['info']
 handler.command = /^profile$/i
 handler.limit = true
-handler.register = false
+handler.register = true
 handler.group = true
 
 module.exports = handler
