@@ -33,6 +33,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
 handler.help = ['ttstalk <username>']
 handler.tags = ['stalk']
 handler.command = /^(ttstalk|tiktokstalk)$/i
+handler.register = true
 handler.limit = true
 
 module.exports = handler
