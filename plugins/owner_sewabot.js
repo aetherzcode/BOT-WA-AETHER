@@ -85,6 +85,7 @@ handler.command = /^(addsewa|delsewa|listsewa|csewa)$/i;
 handler.rowner = /^(addsewa|delsewa|listsewa)$/i;
 handler.group = false;
 handler.private = false;
+handler.register = true;
 
 module.exports = handler;
 
