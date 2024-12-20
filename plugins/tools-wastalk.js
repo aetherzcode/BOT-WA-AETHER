@@ -36,5 +36,7 @@ let handler = async (m, {
 handler.help = ['wastalk']
 handler.tags = ['tools']
 handler.command = /^(wa|whatsapp)stalk$/i
+handler.register = true
+handler.limit = true
 
 module.exports = handler
