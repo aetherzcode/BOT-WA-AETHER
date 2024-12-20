@@ -8,7 +8,7 @@ let handler = async (m, { conn, args, command }) => {
         
         return conn.reply(
             m.chat,
-            `*'on' atau 'off'!*\n\nContoh:\n- *.${command} on* untuk mengaktifkan reset otomatis setiap jam 00:00\n- *.${command} off* untuk menonaktifkan reset otomatis`,
+            `*'on' atau 'off'!*\n\nContoh:\n- *.${command} on* untuk mengaktifkan reset otomatis setiap jam 10:30\n- *.${command} off* untuk menonaktifkan reset otomatis`,
             null
         );
     }
@@ -19,7 +19,7 @@ let handler = async (m, { conn, args, command }) => {
         }
         isAutoResetEnabled = true;
         scheduleDailyReset(conn, lim);
-        conn.reply(m.chat, `*Reset limit otomatis akan dijalankan setiap jam 00:00.*`, null);
+        conn.reply(m.chat, `*Reset limit otomatis akan dijalankan setiap jam 10:30.*`, null);
     } else if (args[0] === 'off') {
         if (!isAutoResetEnabled) {
             return conn.reply(m.chat, `*Reset limit otomatis sudah nonaktif!*`, null);
@@ -40,13 +40,14 @@ let handler = async (m, { conn, args, command }) => {
 function resetLimit(conn, lim) {
     let list = Object.entries(global.db.data.users);
     list.map(([user, data]) => (Number(data.limit = lim)));
-    conn.reply('120363298036479484@g.us', `*Limit berhasil direset ${lim} / user*`, null); // Kirim info ke grup tertentu
+    conn.reply('120363376612967837@newsletter', `*Limit berhasil direset ${lim} / user*`, null);
+ // Kirim info ke grup tertentu
 }
 
 function getTimeUntilMidnight() {
     let now = new Date();
     let nextMidnight = new Date(now);
-    nextMidnight.setHours(24, 0, 0, 0); 
+    nextMidnight.setHours(10, 30, 0, 0); 
     return nextMidnight - now;
 }
 
