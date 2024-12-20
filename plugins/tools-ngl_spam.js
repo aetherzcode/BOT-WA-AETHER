@@ -71,5 +71,7 @@ const handler = async (m, { text }) => {
 
 handler.command = handler.help = ["nglspam"];
 handler.tags = ["tools"];
+handler.register = true;
+handler.limit = true;
 
 module.exports = handler;
