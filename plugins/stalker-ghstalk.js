@@ -40,6 +40,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
 handler.help = ['ghstalk <username>']
 handler.tags = ['stalk']
 handler.command = /^(ghstalk|githubstalk)$/i
+handler.register = true
 handler.limit = true
 
 module.exports = handler
