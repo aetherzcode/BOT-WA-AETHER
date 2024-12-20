@@ -7,7 +7,7 @@ let handler = async (m, { conn, args, command }) => {
     if (args.length === 0) {
         return conn.reply(
             m.chat,
-            `*'on' atau 'off'!*\n\nContoh:\n- *.${command} on* untuk mengaktifkan reset otomatis setiap jam 10:50\n- *.${command} off* untuk menonaktifkan reset otomatis`,
+            `*'on' atau 'off'!*\n\nContoh:\n- *.${command} on* untuk mengaktifkan reset otomatis setiap jam 11:00\n- *.${command} off* untuk menonaktifkan reset otomatis`,
             null
         );
     }
@@ -18,7 +18,7 @@ let handler = async (m, { conn, args, command }) => {
         }
         isAutoResetEnabled = true;
         scheduleDailyReset(conn, lim);
-        conn.reply(m.chat, `*Reset limit otomatis akan dijalankan setiap jam 10:50.*`, null);
+        conn.reply(m.chat, `*Reset limit otomatis akan dijalankan setiap jam 11:00.*`, null);
     } else if (args[0] === 'off') {
         if (!isAutoResetEnabled) {
             return conn.reply(m.chat, `*Reset limit otomatis sudah nonaktif!*`, null);
@@ -44,7 +44,7 @@ function resetLimit(conn, lim) {
 function getTimeUntilNextReset() {
     let now = new Date();
     let nextReset = new Date(now);
-    nextReset.setHours(10, 50, 0, 0); 
+    nextReset.setHours(11, 0, 0, 0); 
 
     // Jika waktu sekarang sudah lewat dari jam 10:50, setel untuk hari berikutnya
     if (now >= nextReset) {
