@@ -49,6 +49,7 @@ let handler = async (m, { text, usedPrefix, command }) => {
 handler.help = ['samehadasearch']
 handler.tags = ['internet']
 handler.command = /^(samehadasearch)$/i
+handler.register = true
 handler.limit = true
 handler.group = true
 
