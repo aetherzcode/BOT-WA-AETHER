@@ -15,8 +15,23 @@ global.eror = '_*Server Error*_'
 global.stiker_wait = '*⫹⫺ Stiker sedang dibuat...*'
 global.packname = 'Made With'
 global.author = 'Bot WhatsApp'
-global.maxwarn = '2' // Peringatan maksimum
-global.antiporn = true // Auto delete pesan porno (bot harus admin)
+global.maxwarn = '2'
+global.antiporn = true
+global.Qris = 'https://files.catbox.moe/ap9e2y.jpg'
+global.Payment = `
+*Metode Pembayaran Tersedia:*
+
+1. **Dana**       : 085798045817
+2. **OVO**        : 085798045817
+3. **GoPay**      : 085798045817
+4. **ShopeePay**  : 085798045817
+5. **SeaBank**    : 901201296150
+6. **BankJago**   : 104458766508
+7. **Madera**     : 86100581006
+8. **NeoBank**    : 5859459280114413
+
+*Untuk QRIS, silakan scan gambar di bawah ini.*
+`
 
 //INI WAJIB DI ISI!//
 global.lann = 'YOUR_APIKEY_HERE' 
