@@ -23,6 +23,7 @@ await m.reply(capt);
 handler.help = ['samehadalast']
 handler.tags = ['internet']
 handler.command = /^(samehadalast)$/i
+handler.register = true
 handler.limit = true
 handler.group = true
 
