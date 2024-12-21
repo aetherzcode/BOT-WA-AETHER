@@ -26,7 +26,7 @@ let handler = async (m, { conn }) => {
 };
 
 handler.command = ['payment', 'metodepembayaran'];
-handler.tags = ['tools'];
+handler.tags = ['tools', 'info'];
 handler.help = ['payment'];
 handler.register = true;
 
