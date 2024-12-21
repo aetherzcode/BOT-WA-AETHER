@@ -9,6 +9,10 @@ global.wm = '© YOUR_NAMEBOT'
 global.instagram = 'YOUR_LINK_INSTAGRAM'
 global.gc = 'YOUR_LINK_GROUP'
 
+// Ini Untuk Upload File Ke Channel Discord
+global.webhookUrlDiscord = 'WEBHOOK_URL'
+global.idChannelDiscord = 'DISCORD_CHANNEL_ID'
+
 global.packname = 'Made With'
 global.author = 'Bot WhatsApp'
 
