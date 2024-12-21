@@ -1,27 +1,18 @@
 var axios = require('axios');
 var handler = async (m, { conn }) => {
-try {
-var dataGempa = [];
-  var response = await axios.get(`https://api.betabotz.eu.org/api/search/gempa?apikey=${lann}`);
-  var res = response.data;
-  var gambar = res.result.Map;
-  dataGempa.push({
-    waktu: res.result.Waktu,
-    lintang: res.result.Lintang,
-    bujur: res.result.Bujur,
-    magnitude: res.result.Magnitudo,
-    kedalaman: res.result.Kedalaman,
-    wilayah: res.result.Wilayah
-  });
-  var caption = `Waktu : ${dataGempa[0].waktu}\nLintang : ${dataGempa[0].lintang}\nBujur : ${dataGempa[0].bujur}\nMagnitude : ${dataGempa[0].magnitude}\nKedalaman : ${dataGempa[0].kedalaman}\nWilayah : ${dataGempa[0].wilayah}`;
-  conn.sendFile(m.chat, gambar, 'map.png', caption, m);
-} catch(e) {
-  console.log(e);
-  conn.reply(m.chat, 'Terjadi kesalahan saat mengambil data gempa', m);
-}
+  try {
+    var response = await axios.get(`https://api.betabotz.eu.org/api/search/gempa?apikey=${lann}`);
+    var dataGempa = response.data.result.result;
+    var caption = `Waktu : ${dataGempa.waktu}\nLintang : ${dataGempa.Lintang}\nBujur : ${dataGempa.Bujur}\nMagnitude : ${dataGempa.Magnitudo}\nKedalaman : ${dataGempa.Kedalaman}\nWilayah : ${dataGempa.Wilayah}`;
+    conn.sendFile(m.chat, dataGempa.image, 'map.png', caption, m);
+  } catch (e) {
+    console.log(e);
+    conn.reply(m.chat, 'Terjadi kesalahan saat mengambil data gempa', m);
+  }
 };
 handler.command = handler.help = ['infogempa', 'gempa'];
 handler.tags = ['info'];
 handler.premium = false;
 handler.limit = true;
+handler.register = true;
 module.exports = handler;
