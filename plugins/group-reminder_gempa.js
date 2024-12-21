@@ -1,10 +1,9 @@
 const axios = require('axios');
 const { setInterval } = require('timers');
 
-const groupChats = [
-    '120363298036479484@g.us',
-    '120363369124606444@g.us',
-    '120363374370080774@g.us',
+const groupChats = [   
+ '120363377709205706@g.us', 
+
 ];
 
 let lastGempaData = null; 
@@ -13,7 +12,7 @@ async function getGempaInfo() {
     try {
         const url = `https://api.betabotz.eu.org/api/search/gempa?apikey=${lann}`;
         const response = await axios.get(url);
-        const res = response.data.result;
+        const res = response.data.result.result;
 
         if (!res) {
             console.log('Data gempa tidak tersedia');
@@ -21,7 +20,7 @@ async function getGempaInfo() {
         }
 
 
-        if (lastGempaData && lastGempaData.Waktu === res.Waktu) {
+        if (lastGempaData && lastGempaData.waktu === res.waktu) {
             console.log('Data gempa belum berubah, tidak ada pengingat.');
             return;
         }
@@ -29,19 +28,21 @@ async function getGempaInfo() {
         lastGempaData = res; 
 
         const gempaInfo = {
-            waktu: res.Waktu,
+            waktu: res.waktu,
             lintang: res.Lintang,
             bujur: res.Bujur,
             magnitude: res.Magnitudo,
             kedalaman: res.Kedalaman,
             wilayah: res.Wilayah,
-            gambar: res.Map
+            potensi: res.Potensi,
+            gambar: res.image
         };
 
         console.log(`
         Waktu Gempa: ${gempaInfo.waktu}
         Magnitudo: ${gempaInfo.magnitude}
         Wilayah: ${gempaInfo.wilayah}
+        Potensi: ${gempaInfo.potensi}
         Gambar: ${gempaInfo.gambar}
         `);
 
@@ -53,7 +54,7 @@ async function getGempaInfo() {
 
 async function sendGempaReminderToGroups(gempaInfo) {
     for (const chatId of groupChats) {
-        const reminderMessage = `🚨 *PENGINGAT GEMPA BUMI* 🚨\n\n🕒 Waktu: ${gempaInfo.waktu}\n🌍 Wilayah: ${gempaInfo.wilayah}\n💥 Magnitudo: ${gempaInfo.magnitude}\n🌐 Lintang: ${gempaInfo.lintang}\n🌐 Bujur: ${gempaInfo.bujur}\n🔍 Kedalaman: ${gempaInfo.kedalaman}\n📷 Gambar Peta: ${gempaInfo.gambar}\n\nJaga keselamatan kalian!`;
+        const reminderMessage = `🚨 *PENGINGAT GEMPA BUMI* 🚨\n\n🕒 Waktu: ${gempaInfo.waktu}\n🌍 Wilayah: ${gempaInfo.wilayah}\n💥 Magnitudo: ${gempaInfo.magnitude}\n🌐 Lintang: ${gempaInfo.lintang}\n🌐 Bujur: ${gempaInfo.bujur}\n🔍 Kedalaman: ${gempaInfo.kedalaman}\n🌊 Potensi: ${gempaInfo.potensi}\n📷 Gambar Peta: ${gempaInfo.gambar}\n\nJaga keselamatan kalian!`;
         await sendReminderToGroup(chatId, reminderMessage); 
     }
 }
@@ -70,4 +71,4 @@ function startGempaReminder() {
     }, 60 * 60 * 1000); 
 }
 
-startGempaReminder(); 
+startGempaReminder();
