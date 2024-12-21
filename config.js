@@ -1,22 +1,23 @@
-global.owner = ['6285798045817', '6285864727063']  
-global.mods = ['6285798045817', '6285864727063'] 
-global.prems = ['6285798045817', '6285864727063']
-global.nameowner = 'ᴀᴇᴛʜᴇʀ'
-global.numberowner = '6285798045817'
-global.mail = 'aetherscode@gmail.com' 
-global.gc = '-'
-global.ownerrepo = 'aetherzcode'
-global.repo = 'BOT-WA-AETHER'
-global.githubToken = 'YOUR_GITHUB_TOKEN'
-global.instagram = 'https://instagram.com/aetherz17_'
-global.wm = '© AETHER'
+global.owner = ['YOUR_NUMBER'
+global.mods = ['YOUR_NUMBER'
+global.prems = ['YOUR_NUMBER'
+global.numberowner = 'YOUR_NUMBER'
+global.nameowner = 'YOUR_NAME'
+global.mail = 'YOUR_EMAIL' 
+global.namebot = 'YOUR_NAME_BOT'
+global.wm = '© YOUR_NAMEBOT'
+global.thumbnail = 'LINK_PHOTO_BOT'
+global.instagram = 'YOUR_LINK_INSTAGRAM'
+global.gc = 'YOUR_LINK_GROUP'
+global.link = 'YOUR_LINK_CHANNEL'
+
+global.packname = 'Made With'
+global.author = 'Bot WhatsApp'
+
 global.wait = '_*Tunggu sedang di proses...*_'
 global.eror = '_*Server Error*_'
 global.stiker_wait = '*⫹⫺ Stiker sedang dibuat...*'
-global.packname = 'Made With'
-global.author = 'Bot WhatsApp'
-global.maxwarn = '2'
-global.antiporn = true
+
 global.Qris = 'https://files.catbox.moe/ap9e2y.jpg'
 global.Payment = `
 *Metode Pembayaran Tersedia:*
@@ -33,13 +34,15 @@ global.Payment = `
 *Untuk QRIS, silakan scan gambar di bawah ini.*
 `
 
-//INI WAJIB DI ISI!//
-global.lann = 'YOUR_APIKEY_HERE' 
-//Daftar terlebih dahulu https://api.betabotz.eu.org 
+global.ownerrepo = 'GITHUB_USERNAME'
+global.repo = 'REPOSITORY_NAME'
+global.githubToken = 'YOUR_GITHUB_TOKEN'
 
-//INI OPTIONAL SIH BOLEH DI ISI BOLEH JUGA ENGGA//
-global.btc = 'YOUR_APIKEY_HERE'
-//Daftar https://api.botcahx.eu.org 
+global.maxwarn = '2'
+global.antiporn = true
+
+global.lann = 'YOUR_APIKEY_HERE' 
+global.btc = 'YOUR_APIKEY_HERE' 
 
 global.APIs = {   
   lann: 'https://api.betabotz.eu.org',
