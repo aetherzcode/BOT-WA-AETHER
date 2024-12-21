@@ -102,7 +102,7 @@ ${muptime}
 *🧿 sᴇʀᴠᴇʀ:* ${os.hostname()}
 *💻 ᴏs:* ${OS}
 *⏰ ᴛɪᴍᴇ sᴇʀᴠᴇʀ:* ${times}
-*👤 ᴅᴇᴘʟᴏʏ ʙʏ:* ᴀᴇᴛʜᴇʀ
+*👤 ᴅᴇᴘʟᴏʏ ʙʏ:* ${global.nameowner}
 
 _NodeJS Memory Usage_
 ${
@@ -167,7 +167,7 @@ extendedTextMessage:{
 }}, {})
 }
 handler.help = ['ping', 'speed'];
-handler.tags = ['info'];
+handler.tags = ['info', 'tools'];
 handler.command = /^(ping|speed|pong|ingfo)$/i
 module.exports = handler;
 
@@ -178,7 +178,3 @@ function clockString(ms) {
   var s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
   return [d, 'D ', h, 'H ', m, 'M ', s, 'S '].map(v => v.toString().padStart(2, 0)).join('')
 }
-
-        
-       
-
