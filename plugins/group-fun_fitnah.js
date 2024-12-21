@@ -67,5 +67,6 @@ handler.help = ['fitnah']
 handler.tags = ['fun']
 handler.command = /^fitnah$/i
 handler.group = true
+handler.register = true
 
 module.exports = handler
