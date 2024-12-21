@@ -170,7 +170,7 @@ let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
                             mediaType: 1,
                             previewType: 0,
                             renderLargerThumbnail: true,
-                            thumbnailUrl: 'https://files.catbox.moe/cunu9a.jpg',
+                            thumbnailUrl: 'https://files.catbox.moe/v6potj.png',
                             sourceUrl: 'https://whatsapp.com/channel/0029VaytwYK1t90iXAvaO62s'
                         }
                     },
@@ -222,7 +222,7 @@ let handler = async (m, { conn, usedPrefix: _p, args = [], command }) => {
                         mediaType: 1,
                         previewType: 0,
                         renderLargerThumbnail: true,
-                        thumbnailUrl: 'https://files.catbox.moe/cunu9a.jpg',
+                        thumbnailUrl: 'https://files.catbox.moe/v6potj.png',
                         sourceUrl: 'https://whatsapp.com/channel/0029VaytwYK1t90iXAvaO62s'
                     }
                 }, 
